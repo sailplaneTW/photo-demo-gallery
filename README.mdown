@@ -2,7 +2,7 @@
 
 # Photo Demo Gallery
 
-# FlexSlider 2.3.0-bleeding
+### FlexSlider 2.3.0-bleeding
 We use FlexSlider as code base for developing simple photo demo gallery.
 ( http://www.woothemes.com/flexslider/ - Copyright (c) 2014 WooThemes )
 
@@ -12,7 +12,7 @@ We encourage contributions to FlexSlider and will review all pull requests submi
 
 Before contributing, please see our [Contributing Guide](https://github.com/woothemes/FlexSlider/blob/master/CONTRIBUTING.md).
 
-## General Notes
+### General Notes
 FlexSlider is no longer licensed under the MIT license. FlexSlider now shares the common licensed used for all WooThemes themes, GPLv2.
 
 In an effort to move the plugin forward, support for jQuery 1.3.2 has been dropped. The plugin now requires jQuery 1.4.2+. If you don't have access to the later versions of jQuery, [FlexSlider 1.8](https://github.com/woothemes/FlexSlider/tree/flexslider1) should be a perfectly suitable substitute for your needs!
