@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-	<meta content="charset=utf-8">
-	<title>[Photo Demo]</title>
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <meta content="charset=utf-8">
+    <title>[Photo Demo]</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
   <!-- Demo CSS -->
-	<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../flexslider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../flexslider.css" type="text/css" media="screen" />
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon-6/favicon.ico"/>
 
-	<!-- Modernizr -->
+    <!-- Modernizr -->
   <script src="js/modernizr.js"></script>
 
 </head>
@@ -19,49 +19,48 @@
   <div id="container" class="cf">
     <header role="navigation">
         <img src="images/logo-example.png" alt="(^__^)" />
-	  </a>
-      <h1>(Custom Name)</h1>
-      <h2>(Description)</h2>
+      <h1>(sailplaneTW's photo)</h1>
+      <h2 id='showing_image_name' name='showing_image_name'></h2>
     </header>
 
-	<div id="main" role="main">
+    <div id="main" role="main">
       <section class="slider">
         <div id="slider" class="flexslider">
           <ul class="slides">
-                <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='image 1' name='image 1' /></li>
-  	    		<li><img src="images/kitchen_adventurer_lemon.jpg" id='image 2' name='image 2' /></li>
-  	    		<li><img src="images/kitchen_adventurer_donut.jpg" id='image 3' name='image 3' /></li>
-  	    		<li><img src="images/kitchen_adventurer_caramel.jpg" id='image 4' name='image 4' /></li>
-                <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='image 5' name='image 5' /></li>
-  	    		<li><img src="images/kitchen_adventurer_lemon.jpg" id='image 6' name='image 6' /></li>
-  	    		<li><img src="images/kitchen_adventurer_donut.jpg" id='image 7' name='image 7' /></li>
-  	    		<li><img src="images/kitchen_adventurer_caramel.jpg" id='image 8' name='image 8' /></li>
-                <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='image 9' name='image 9' /></li>
-  	    		<li><img src="images/kitchen_adventurer_lemon.jpg" id='image 10' name='image 10' /></li>
-  	    		<li><img src="images/kitchen_adventurer_donut.jpg" id='image 11' name='image 11' /></li>
-  	    		<li><img src="images/kitchen_adventurer_caramel.jpg" id='image 12' name='image 12' /></li>
-  	    		<li><img src="../photo/germany_1001.jpg" id='image 13' name='image 13' /></li>
-  	    		<li><img src="../photo/green_meadow_2-HD.jpg" id='image 14' name='image 14' /></li>
-  	    		<li><img src="../photo/IMAG0063_1.jpg" id='image 15' name='image 15' /></li>
+          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img0' name='img0' alt='kitchen_adventurer_cheesecake_brownie' /></li>
+          <li><img src="images/kitchen_adventurer_lemon.jpg" id='img1' name='img1'  alt='kitchen_adventurer_lemon' /></li>
+          <li><img src="images/kitchen_adventurer_donut.jpg" id='img2' name='img2' alt='kitchen_adventurer_donut' /></li>
+          <li><img src="images/kitchen_adventurer_caramel.jpg" id='img3' name='img3' alt='kitchen_adventurer_caramel' /></li>
+          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img4' name='img4' alt='kitchen_adventurer_cheesecake_brownie' /></li>
+          <li><img src="images/kitchen_adventurer_lemon.jpg" id='img5' name='img5' alt='kitchen_adventurer_lemon' /></li>
+          <li><img src="images/kitchen_adventurer_donut.jpg" id='img6' name='img6' alt='kitchen_adventurer_donut' /></li>
+          <li><img src="images/kitchen_adventurer_caramel.jpg" id='img7' name='img7' alt='kitchen_adventurer_caramel' /></li>
+          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img8' name='img8' alt='kitchen_adventurer_cheesecake_brownie' /></li>
+          <li><img src="images/kitchen_adventurer_lemon.jpg" id='img9' name='img9' alt='kitchen_adventurer_lemon' /></li>
+          <li><img src="images/kitchen_adventurer_donut.jpg" id='img10' name='img10' alt='kitchen_adventurer_donut' /></li>
+          <li><img src="images/kitchen_adventurer_caramel.jpg" id='img11' name='img11' alt='kitchen_adventurer_caramel' /></li>
+          <li><img src="../photo/germany_1001.jpg" id='img12' name='img12' alt='germany_1001' /></li>
+          <li><img src="../photo/green_meadow_2-HD.jpg" id='img13' name='img13' alt='green_meadow_2-HD' /></li>
+          <li><img src="../photo/IMAG0063_1.jpg" id='img14' name='img14' alt='IMAG0063_1' /></li>
           </ul>
         </div>
         <div id="carousel" class="flexslider">
           <ul class="slides">
-                <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_donut.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
-                <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_donut.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
-                <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
-  	    		<li><img src="images/kitchen_adventurer_donut.jpg" /></li>
-                <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
-                <li><img src="../photo/germany_1001.jpg" /></li>
-                <li><img src="../photo/green_meadow_2-HD.jpg" /></li>
-  	    		<li><img src="../photo/IMAG0063_1.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_donut.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_donut.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_donut.jpg" /></li>
+          <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
+          <li><img src="../photo/germany_1001.jpg" /></li>
+          <li><img src="../photo/green_meadow_2-HD.jpg" /></li>
+          <li><img src="../photo/IMAG0063_1.jpg" /></li>
           </ul>
         </div>
       </section>
@@ -101,8 +100,14 @@
         sync: "#carousel",
         start: function(slider){
           $('body').removeClass('loading');
+        },
+        after: function(slider) {
+            //alert($('#image '+slider.currentSlide).attr('id') );
+            $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
         }
       });
+
+      $('#showing_image_name').text( $('#img0').attr('alt') );
     });
   </script>
 
