@@ -62,7 +62,7 @@
       <br/>
       <br/>
 
-	  <img src='images/ok-trans.png' width='100'>&nbsp;&nbsp;&nbsp;&nbsp;<img src='images/no-trans.png' width='100'>
+	  <img id='ok_selection' name='ok_selection' src='images/ok-trans.png' width='100'>&nbsp;&nbsp;&nbsp;&nbsp;<img id='no_selection' name='no_selection' src='images/no-trans.png' width='100'>
 
       </center>
     </header>
@@ -118,6 +118,10 @@
 
   </div>
 
+  <!-- save data in page -->
+  <p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
+  <p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
+
   <!-- jQuery -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
@@ -155,11 +159,27 @@
                 $('#qtd'+i).css('background-color', '#aad4ff');
             }
             $('#qtd'+slider.currentSlide).css('background-color', '#FFFFBB');
+            $('#current_img_id').text(slider.currentSlide);
+
+            var ok_list_array = ($('#ok_list').text()).split(',');
+            if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+                $('#ok_selection').css('opacity', '1');
+                $('#ok_selection').css('filter', 'alpha(opacity=100)');
+                $('#no_selection').css('opacity', '0.3');
+                $('#no_selection').css('filter', 'alpha(opacity=30)');
+            }
+            else {
+                $('#no_selection').css('opacity', '1');
+                $('#no_selection').css('filter', 'alpha(opacity=100)');
+                $('#ok_selection').css('opacity', '1');
+                $('#ok_selection').css('filter', 'alpha(opacity=100)');
+            }
         }
       });
 
       $('#showing_image_name').text( $('#img0').attr('alt') );
       $('#qtd0').css('background-color', '#FFFFBB');
+      $('#current_img_id').text('0');
 
       $("#quick_selection_table td").click(function() {
           var column_num = parseInt( $(this).index() ) + 1;
@@ -169,6 +189,44 @@
               $('#slider').flexslider(current_td_id);
           }
         });
+
+      function sort_unique(arr) {
+          arr = arr.sort(function (a, b) { return a*1 - b*1; });
+          var ret = [arr[0]];
+          for (var i = 1; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
+              if (arr[i-1] !== arr[i]) {
+                  ret.push(arr[i]);
+              }
+          }
+          return ret;
+      }
+
+      $("#ok_selection").click(function(){
+          var ok_list_array = ($('#ok_list').text()).split(',');
+          if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
+            ok_list_array.push(parseInt($('#current_img_id').text()));
+            ok_list_array = sort_unique(ok_list_array);
+            $('#ok_list').text(ok_list_array.toString());
+
+            $('#ok_selection').css('opacity', '1');
+            $('#ok_selection').css('filter', 'alpha(opacity=100)');
+            $('#no_selection').css('opacity', '0.3');
+            $('#no_selection').css('filter', 'alpha(opacity=30)');
+          }
+      });
+      $("#no_selection").click(function(){
+          var ok_list_array = ($('#ok_list').text()).split(',');
+          if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+            ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
+            ok_list_array = sort_unique(ok_list_array);
+            $('#ok_list').text(ok_list_array.toString());
+
+            $('#no_selection').css('opacity', '1');
+            $('#no_selection').css('filter', 'alpha(opacity=100)');
+            $('#ok_selection').css('opacity', '1');
+            $('#ok_selection').css('filter', 'alpha(opacity=100)');
+          }
+      });
     });
   </script>
 
