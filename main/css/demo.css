@@ -183,10 +183,13 @@ nav li.active a  { cursor: default; }
 @media screen and (max-width: 768px) {
   #container {padding: 20px 30px;}
   header {width: 100%; float: none; text-align: center;}
-  header img  {width:120px;}
+  /*header img  {width:120px;}*/
   header h1  { margin: 0 auto 10px; font-size: 32px; }
   header h2  { font-size: 16px; }
   header .button  { margin-bottom: 28px; }
+
+  #logo_img {width:250px;}
+  table img {width:42px;}
 
   #main {margin-left: 0;}
   h3.nav-header { margin: 0 auto 10px; font-size: 16px; }
