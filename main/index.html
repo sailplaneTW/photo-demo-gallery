@@ -168,6 +168,14 @@
             $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
             for(var i=0; i<=16 ; i++) {
                 $('#qtd'+i).css('background-color', '#aad4ff');
+                $('#qtd'+i).hover(
+                    function() {
+                        $(this).css('opacity', '0.5');
+                    },
+                    function() {
+                        $(this).css('opacity', '1');
+                    }
+                );
             }
             $('#qtd'+slider.currentSlide).css('background-color', '#FFFFBB');
             $('#current_img_id').text(slider.currentSlide);
