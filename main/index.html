@@ -176,17 +176,30 @@
         after: function(slider) {
             $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
             for(var i=0; i<=16 ; i++) {
-                $('#qtd'+i).css('background-color', '#aad4ff');
+                $('#qtd'+i).css('background-color', '#fcffba');
                 $('#qtd'+i).hover(
                     function() {
                         $(this).css('opacity', '0.5');
+                        $(this).css('background-color', '#ffff45');
                     },
                     function() {
                         $(this).css('opacity', '1');
+                        $(this).css('background-color', '#fcffba');
                     }
                 );
             }
-            $('#qtd'+slider.currentSlide).css('background-color', '#FFFFBB');
+            $('#qtd'+slider.currentSlide).css('background-color', '#ffba42');
+            $('#qtd'+slider.currentSlide).hover(
+                function() {
+                    $(this).css('opacity', '0.5');
+                    $(this).css('background-color', '#ffba42');
+                },
+                function() {
+                    $(this).css('opacity', '1');
+                    $(this).css('background-color', '#ffba42');
+                }
+            );
+
             $('#current_img_id').text(slider.currentSlide);
 
             var ok_list_array = ($('#ok_list').text()).split(',');
