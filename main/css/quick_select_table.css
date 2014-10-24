@@ -80,7 +80,8 @@
     font-size:14px;
     font-family:Arial;
     font-weight:bold;
-    color:#ffffff;
+    color:#000000;
+    opacity:0.5;
 }
 .CSSTableGenerator tr:first-child:hover td{
     background:-o-linear-gradient(bottom, #e09c12 5%, #e09c12 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e09c12), color-stop(1, #e09c12) );
