@@ -3,6 +3,14 @@
     box-sizing: border-box;
     padding: 0 250px 250px;
     text-align: center;
+
+/*
+    float : right;
+    position : absolute;
+    top : -20px;
+    right : 18px;
+    border : 2px solid #03c;
+*/
 }
 
 /* Checkmark style starts */
