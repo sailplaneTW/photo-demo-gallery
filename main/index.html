@@ -13,6 +13,10 @@
   <!-- Quick Selection Table CSS -->
     <link rel="stylesheet" href="css/quick_select_table.css" type="text/css" media="screen" />
 
+  <!-- Check Box -->
+    <link href="css/checkbox.css" rel="stylesheet" type="text/css">
+    <link href="css/sticky.css" rel="stylesheet" type="text/css">
+
     <!-- Modernizr -->
   <script src="js/modernizr.js"></script>
 
@@ -73,6 +77,11 @@
 
       <br/>
       <br/>
+
+      <div class='cbcontainer'>
+        <input type="checkbox" id="cbobj" />
+        <label for="cbobj" class="check-box"></label>
+      </div>
 
       <!--
 	  <img id='ok_selection' name='ok_selection' src='images/ok-trans.png' width='100'>&nbsp;&nbsp;&nbsp;&nbsp;<img id='no_selection' name='no_selection' src='images/no-trans.png' width='100'>
@@ -284,6 +293,10 @@
               $('#quick_selection_table_div').appendTo('#quick_selection_table_location_1');
           }
       });
+
+      $("#cbobj" ).change(function() {
+          alert($(this).is(':checked'));
+      })
     });
   </script>
 
