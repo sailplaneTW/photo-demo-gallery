@@ -37,8 +37,9 @@
       <!--<h2 id='showing_image_name' name='showing_image_name'></h2>-->
       <br/>
 
+      <center id='quick_selection_table_location_1' name='quick_selection_table_location_1'></center>
       <!-- Quick Selection Table -->
-      <div class="CSSTableGenerator" >
+      <div class="CSSTableGenerator" id='quick_selection_table_div' name='quick_selection_table_div'>
       <table id='quick_selection_table' name='quick_selection_table' role='quick_selection_table'>
         <tr>
             <td colspan='4'>快 速 選 單</td>
@@ -136,6 +137,7 @@
         -->
       </section>
       <aside>
+      <center id='quick_selection_table_location_2' name='quick_selection_table_location_2'></center>
       </aside>
     </div>
 
@@ -271,6 +273,15 @@
             $('#no_selection').css('filter', 'alpha(opacity=100)');
             $('#ok_selection').css('opacity', '1');
             $('#ok_selection').css('filter', 'alpha(opacity=100)');
+          }
+      });
+
+      $(window).resize(function() {
+          if($(window).width() < 768) {
+              $('#quick_selection_table_div').appendTo('#quick_selection_table_location_2');
+          }
+          else {
+              $('#quick_selection_table_div').appendTo('#quick_selection_table_location_1');
           }
       });
     });
