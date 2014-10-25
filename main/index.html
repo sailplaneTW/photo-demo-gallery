@@ -78,11 +78,6 @@
       <br/>
       <br/>
 
-      <div class='cbcontainer'>
-        <input type="checkbox" id="cbobj" />
-        <label for="cbobj" class="check-box"></label>
-      </div>
-
       <!--
 	  <img id='ok_selection' name='ok_selection' src='images/ok-trans.png' width='100'>&nbsp;&nbsp;&nbsp;&nbsp;<img id='no_selection' name='no_selection' src='images/no-trans.png' width='100'>
 
@@ -116,13 +111,17 @@
           <li><img src="images/kitchen_adventurer_lemon.jpg" id='img9' name='img9' alt='kitchen_adventurer_lemon' /></li>
           <li><img src="images/kitchen_adventurer_donut.jpg" id='img10' name='img10' alt='kitchen_adventurer_donut' /></li>
           <li><img src="images/kitchen_adventurer_caramel.jpg" id='img11' name='img11' alt='kitchen_adventurer_caramel' /></li>
+
           <!--
           <li><img src="../photo/germany_1001.jpg" id='img12' name='img12' alt='germany_1001' /></li>
           <li><img src="../photo/green_meadow_2-HD.jpg" id='img13' name='img13' alt='green_meadow_2-HD' /></li>
           <li><img src="../photo/IMAG0063_1.jpg" id='img14' name='img14' alt='IMAG0063_1' /></li>
           -->
           </ul>
-
+		  <div class='cbcontainer' id='cbcontainer_div' name='cbcontainer_div'>
+		  <input type="checkbox" id="cbobj" />
+		  <label for="cbobj" class="check-box"></label>
+		  </div>
         </div>
 
         <!--
@@ -222,16 +221,10 @@
 
             var ok_list_array = ($('#ok_list').text()).split(',');
             if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
-                $('#ok_selection').css('opacity', '1');
-                $('#ok_selection').css('filter', 'alpha(opacity=100)');
-                $('#no_selection').css('opacity', '0.3');
-                $('#no_selection').css('filter', 'alpha(opacity=30)');
+			  $('#cbcontainer').checked = true;
             }
             else {
-                $('#no_selection').css('opacity', '1');
-                $('#no_selection').css('filter', 'alpha(opacity=100)');
-                $('#ok_selection').css('opacity', '1');
-                $('#ok_selection').css('filter', 'alpha(opacity=100)');
+			  $('#cbcontainer').checked = false;
             }
         }
       });
@@ -260,33 +253,6 @@
           return ret;
       }
 
-      $("#ok_selection").click(function(){
-          var ok_list_array = ($('#ok_list').text()).split(',');
-          if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
-            ok_list_array.push(parseInt($('#current_img_id').text()));
-            ok_list_array = sort_unique(ok_list_array);
-            $('#ok_list').text(ok_list_array.toString());
-
-            $('#ok_selection').css('opacity', '1');
-            $('#ok_selection').css('filter', 'alpha(opacity=100)');
-            $('#no_selection').css('opacity', '0.3');
-            $('#no_selection').css('filter', 'alpha(opacity=30)');
-          }
-      });
-      $("#no_selection").click(function(){
-          var ok_list_array = ($('#ok_list').text()).split(',');
-          if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
-            ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
-            ok_list_array = sort_unique(ok_list_array);
-            $('#ok_list').text(ok_list_array.toString());
-
-            $('#no_selection').css('opacity', '1');
-            $('#no_selection').css('filter', 'alpha(opacity=100)');
-            $('#ok_selection').css('opacity', '1');
-            $('#ok_selection').css('filter', 'alpha(opacity=100)');
-          }
-      });
-
       $(window).resize(function() {
           if($(window).width() < 768) {
               $('#quick_selection_table_div').appendTo('#quick_selection_table_location_2');
@@ -298,8 +264,38 @@
 
       $("#cbobj" ).change(function() {
           /*alert($(this).is(':checked'));*/
+		  if($(this).is(':checked') == true) {
+			var ok_list_array = ($('#ok_list').text()).split(',');
+			if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
+				ok_list_array.push(parseInt($('#current_img_id').text()));
+				ok_list_array = sort_unique(ok_list_array);
+				$('#ok_list').text(ok_list_array.toString());
+			}
+		  }
+		  else {
+			var ok_list_array = ($('#ok_list').text()).split(',');
+			if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+				ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
+				ok_list_array = sort_unique(ok_list_array);
+				$('#ok_list').text(ok_list_array.toString());
+			}
+		  }
       })
     });
+
+	$('#cbcontainer_div').css('visibility', 'hidden');
+
+	$('#slider').hover(
+		function() {
+		  setTimeout(function() {
+			$('#cbcontainer_div').css('visibility', 'visible');
+		  }, 200);
+		},
+		function() {
+		  $('#cbcontainer_div').css('visibility', 'hidden');
+		}
+	);
+
   </script>
 
 <script type="text/javascript">
