@@ -119,8 +119,17 @@
           -->
           </ul>
 		  <div class='cbcontainer' id='cbcontainer_div' name='cbcontainer_div'>
-		  <input type="checkbox" id="cbobj" />
-		  <label for="cbobj" class="check-box"></label>
+
+		  <div id='checkbox_div0' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
+		  <input type="checkbox" id="cbobj0"/>
+		  <label for="cbobj0" class="check-box" id='cbobjlabel0'></label>
+		  </div>
+		  
+		  <div id='checkbox_div1' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
+		  <input type="checkbox" id="cbobj1" />
+		  <label for="cbobj1" class="check-box" id='cbobjlabel1'></label>
+		  </div>
+		  
 		  </div>
         </div>
 
@@ -165,6 +174,18 @@
   <script defer src="../jquery.flexslider.js"></script>
 
   <script type="text/javascript">
+	function show_check_box(idx, is_visible) {
+	  $('#checkbox_div'+idx).css('visibility', is_visible);
+	  $('#cbobj'+idx).css('visibility', is_visible);
+	  $('#cbobjlabel'+idx).css('visibility', is_visible);
+
+	  if(is_visible === 'visible')
+		$('#checkbox_div'+idx).css('z-index', '2');
+	  else
+		$('#checkbox_div'+idx).css('z-index', '-100');
+	}
+
+
     $(function(){
       SyntaxHighlighter.all();
     });
@@ -190,6 +211,9 @@
         start: function(slider){
           $('body').removeClass('loading');
         },
+		before: function(slider) {
+			//show_check_box(slider.currentSlide, 'hidden');
+		},
         after: function(slider) {
             $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
             for(var i=0; i<=16 ; i++) {
@@ -226,6 +250,8 @@
             else {
 			  $('#cbcontainer').checked = false;
             }
+
+			//show_check_box(slider.currentSlide, 'visible');
         }
       });
 
@@ -238,6 +264,7 @@
           var row_num = parseInt( $(this).parent().index() )+1;
           if(1<=parseInt(column_num) && parseInt(column_num)<=4 && 2<=parseInt(row_num) && parseInt(row_num)<=5) {
               var current_td_id = (row_num-2)*4 + (column_num-1);
+			  //show_check_box($('#current_img_id').text(), 'hidden');
               $('#slider').flexslider(current_td_id);
           }
         });
@@ -262,37 +289,43 @@
           }
       });
 
-      $("#cbobj" ).change(function() {
-          /*alert($(this).is(':checked'));*/
-		  if($(this).is(':checked') == true) {
-			var ok_list_array = ($('#ok_list').text()).split(',');
-			if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
-				ok_list_array.push(parseInt($('#current_img_id').text()));
-				ok_list_array = sort_unique(ok_list_array);
-				$('#ok_list').text(ok_list_array.toString());
-			}
-		  }
-		  else {
-			var ok_list_array = ($('#ok_list').text()).split(',');
-			if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
-				ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
-				ok_list_array = sort_unique(ok_list_array);
-				$('#ok_list').text(ok_list_array.toString());
-			}
-		  }
-      })
-    });
+
+	  });
 
 	$('#cbcontainer_div').css('visibility', 'hidden');
+
+	for(var i=0;i<16;i++) {
+
+		$("#cbobj"+i).change(function() {
+			if($(this).is(':checked') == true) {
+			var ok_list_array = ($('#ok_list').text()).split(',');
+			if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
+			ok_list_array.push(parseInt($('#current_img_id').text()));
+			ok_list_array = sort_unique(ok_list_array);
+			$('#ok_list').text(ok_list_array.toString());
+			}
+			}
+			else {
+			var ok_list_array = ($('#ok_list').text()).split(',');
+			if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+			ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
+			ok_list_array = sort_unique(ok_list_array);
+			$('#ok_list').text(ok_list_array.toString());
+			}
+			}
+			});
+	}
 
 	$('#slider').hover(
 		function() {
 		  setTimeout(function() {
 			$('#cbcontainer_div').css('visibility', 'visible');
+			show_check_box($('#current_img_id').text(), 'visible');
 		  }, 200);
 		},
 		function() {
 		  $('#cbcontainer_div').css('visibility', 'hidden');
+			show_check_box($('#current_img_id').text(), 'hidden');
 		}
 	);
 

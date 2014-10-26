@@ -1,7 +1,8 @@
 
 .cbcontainer {
     box-sizing: border-box;
-    padding: 25px 25px 25px;
+    padding: 5% 5% 5%;
+    /*padding: 25px 25px 25px;*/
     text-align: center;
 	background-color:#DDDDDD;
 	opacity:0.5;
@@ -118,7 +119,6 @@ input[type=checkbox] { display: none; }
 .check-box::before {
   top: 72px;
   left: 41px;
-/*  opacity:0;*/
   box-shadow: 0 0 0 5px #DDDDDD;
   -moz-transform: rotate(-135deg);
   -ms-transform: rotate(-135deg);
