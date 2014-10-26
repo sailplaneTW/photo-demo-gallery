@@ -2,6 +2,9 @@
 
 # Photo Demo Gallery
 
+### Project Demo
+[demo](https://dl.dropboxusercontent.com/u/32653230/photo-demo-gallery/main/index.html)
+
 ### FlexSlider 2.3.0-bleeding
 We use FlexSlider as code base for developing simple photo demo gallery.
 ( http://www.woothemes.com/flexslider/ - Copyright (c) 2014 WooThemes )
