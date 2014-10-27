@@ -67,6 +67,7 @@
                     </div>
                     <br/>
                     <br/>
+                    <p id='debugmsg' name='debugmsg' style='visibility: hidden;'></p>
                 </center>
             </header>
             <div id="main" role="main">
@@ -166,7 +167,7 @@
         </div>
         <!-- save data in page -->
         <p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
-        <p id='ok_list' name='ok_list' style='/*visibility: hidden;*/'></p>
+        <p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
         <!-- jQuery -->
         <script src="../jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
@@ -185,6 +186,7 @@
             }
             
             function set_checkbox_visible(idx) {
+                $('#debugmsg').text('set '+idx+' visible');
                 for(var i=0;i<16;i++) {
                     show_check_box(i, 'hidden');
                 }
@@ -193,14 +195,19 @@
             }
             
             function set_all_checkbox_invisible() {
+                $('#debugmsg').text('set all invisible');
                 for(var i=0;i<16;i++) {
                     show_check_box(i, 'hidden');
                 }
             }
-            
-            var is_jump_from_qtb = false;
-            
-            
+
+            function is_in_ok_list(idx) {
+                var ok_list_array = ($('#ok_list').text()).split(',');
+                if(ok_list_array.indexOf(idx.toString()) > -1)
+                    return true;
+                return false;
+            }
+
             $(function(){
                     SyntaxHighlighter.all();
                     });
@@ -215,21 +222,27 @@
             $('body').removeClass('loading');
             },
             before: function(slider) {
-            set_all_checkbox_invisible();
+            /*set_all_checkbox_invisible();*/
             },
             after: function(slider) {
             $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
             for(var i=0; i<=16 ; i++) {
-            $('#qtd'+i).css('background-color', '#fcffba');
-            $('#qtd'+i).hover(
-                function() {
-                $(this).css('opacity', '0.5');
-                $(this).css('background-color', '#ffff45');
-                },
-                function() {
-                $(this).css('opacity', '1');
-                $(this).css('background-color', '#fcffba');
-                }
+                if(is_in_ok_list(i) == true)
+                    $('#qtd'+i).css('background-color', '#FFC8B4');
+                else
+                    $('#qtd'+i).css('background-color', '#fcffba');
+                $('#qtd'+i).hover(
+                    function() {
+                        $(this).css('opacity', '0.5');
+                        $(this).css('background-color', '#ffff45');
+                    },
+                    function() {
+                        $(this).css('opacity', '1');
+                        if(is_in_ok_list(i) == true)
+                            $(this).css('background-color', '#FFC8B4');
+                        else
+                            $(this).css('background-color', '#fcffba');
+                    }
                 );
             }
             $('#qtd'+slider.currentSlide).css('background-color', '#ffba42');
@@ -254,10 +267,7 @@
                 $('#cbcontainer').checked = false;
             }
             
-            if(is_jump_from_qtb == false) {
-                set_checkbox_visible(slider.currentSlide);
-            }
-            is_jump_from_qtb = false;
+            set_checkbox_visible(slider.currentSlide);
             }
             });
             
@@ -270,8 +280,7 @@
                     var row_num = parseInt( $(this).parent().index() )+1;
                     if(1<=parseInt(column_num) && parseInt(column_num)<=4 && 2<=parseInt(row_num) && parseInt(row_num)<=5) {
                     var current_td_id = (row_num-2)*4 + (column_num-1);
-                    set_all_checkbox_invisible();
-                    is_jump_from_qtb = true;
+                    /*set_all_checkbox_invisible();*/
                     $('#slider').flexslider(current_td_id);
                     }
                     });
@@ -310,7 +319,8 @@
                         ok_list_array.push(parseInt($('#current_img_id').text()));
                         ok_list_array = sort_unique(ok_list_array);
                         $('#ok_list').text(ok_list_array.toString());
-                                 $('#qtdimg'+$('#current_img_id').text()).css('border', '4px red solid');
+                                 /*$('#qtdimg'+$('#current_img_id').text()).css('border', '4px red solid');*/
+                                 $('#qtd'+$('#current_img_id').text()).css('background-color', '#FFC8B4');
                         }
                         }
                         else {
@@ -329,7 +339,8 @@
                         ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
                         ok_list_array = sort_unique(ok_list_array);
                         $('#ok_list').text(ok_list_array.toString());
-                                 $('#qtdimg'+$('#current_img_id').text()).css('border', '0px red solid');
+                                 /*$('#qtdimg'+$('#current_img_id').text()).css('border', '0px red solid');*/
+                                 $('#qtd'+$('#current_img_id').text()).css('background-color', '#ffba42');
                         }
                         }
                         });
@@ -344,9 +355,12 @@
                     },
                     function() {
                     $('#cbcontainer_div').css('visibility', 'hidden');
-                    set_all_checkbox_invisible();
+                    /*set_all_checkbox_invisible();*/
                     }
                     );
+
+            set_checkbox_visible(0);
+            $('#qtd0').css('background-color', '#fcffba');
             
         </script>
         <script type="text/javascript">
