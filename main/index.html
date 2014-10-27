@@ -175,15 +175,31 @@
 
   <script type="text/javascript">
 	function show_check_box(idx, is_visible) {
-	  $('#checkbox_div'+idx).css('visibility', is_visible);
-	  $('#cbobj'+idx).css('visibility', is_visible);
-	  $('#cbobjlabel'+idx).css('visibility', is_visible);
+              $('#checkbox_div'+idx).css('visibility', is_visible);
+              $('#cbobj'+idx).css('visibility', is_visible);
+              $('#cbobjlabel'+idx).css('visibility', is_visible);
 
-	  if(is_visible === 'visible')
-		$('#checkbox_div'+idx).css('z-index', '2');
-	  else
-		$('#checkbox_div'+idx).css('z-index', '-100');
+              if(is_visible === 'visible')
+              $('#checkbox_div'+idx).css('z-index', '2');
+              else
+              $('#checkbox_div'+idx).css('z-index', '-100');
 	}
+
+    function set_checkbox_visible(idx) {
+        for(var i=0;i<16;i++) {
+            show_check_box(i, 'hidden');
+        }
+
+        show_check_box(idx, 'visible');
+    }
+
+    function set_all_checkbox_invisible() {
+        for(var i=0;i<16;i++) {
+            show_check_box(i, 'hidden');
+        }
+    }
+
+    var is_jump_from_qtb = false;
 
 
     $(function(){
@@ -212,7 +228,7 @@
           $('body').removeClass('loading');
         },
 		before: function(slider) {
-			//show_check_box(slider.currentSlide, 'hidden');
+            set_all_checkbox_invisible();
 		},
         after: function(slider) {
             $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
@@ -251,7 +267,10 @@
 			  $('#cbcontainer').checked = false;
             }
 
-			//show_check_box(slider.currentSlide, 'visible');
+            if(is_jump_from_qtb == false) {
+                set_checkbox_visible(slider.currentSlide);
+            }
+            is_jump_from_qtb = false;
         }
       });
 
@@ -264,7 +283,8 @@
           var row_num = parseInt( $(this).parent().index() )+1;
           if(1<=parseInt(column_num) && parseInt(column_num)<=4 && 2<=parseInt(row_num) && parseInt(row_num)<=5) {
               var current_td_id = (row_num-2)*4 + (column_num-1);
-			  //show_check_box($('#current_img_id').text(), 'hidden');
+              set_all_checkbox_invisible();
+                is_jump_from_qtb = true;
               $('#slider').flexslider(current_td_id);
           }
         });
@@ -298,19 +318,19 @@
 
 		$("#cbobj"+i).change(function() {
 			if($(this).is(':checked') == true) {
-			var ok_list_array = ($('#ok_list').text()).split(',');
-			if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
-			ok_list_array.push(parseInt($('#current_img_id').text()));
-			ok_list_array = sort_unique(ok_list_array);
-			$('#ok_list').text(ok_list_array.toString());
+                var ok_list_array = ($('#ok_list').text()).split(',');
+                if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
+                ok_list_array.push(parseInt($('#current_img_id').text()));
+                ok_list_array = sort_unique(ok_list_array);
+                $('#ok_list').text(ok_list_array.toString());
 			}
 			}
 			else {
-			var ok_list_array = ($('#ok_list').text()).split(',');
-			if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
-			ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
-			ok_list_array = sort_unique(ok_list_array);
-			$('#ok_list').text(ok_list_array.toString());
+                var ok_list_array = ($('#ok_list').text()).split(',');
+                if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+                    ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
+                ok_list_array = sort_unique(ok_list_array);
+                $('#ok_list').text(ok_list_array.toString());
 			}
 			}
 			});
@@ -320,12 +340,12 @@
 		function() {
 		  setTimeout(function() {
 			$('#cbcontainer_div').css('visibility', 'visible');
-			show_check_box($('#current_img_id').text(), 'visible');
+            set_checkbox_visible($('#current_img_id').text());
 		  }, 200);
 		},
 		function() {
 		  $('#cbcontainer_div').css('visibility', 'hidden');
-			show_check_box($('#current_img_id').text(), 'hidden');
+            set_all_checkbox_invisible();
 		}
 	);
 
