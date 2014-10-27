@@ -1,396 +1,367 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
-    <meta content="charset=utf-8">
-    <title>[Photo Demo]</title>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-
-  <!-- Demo CSS -->
-    <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="../flexslider.css" type="text/css" media="screen" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-6/favicon.ico"/>
-
-  <!-- Quick Selection Table CSS -->
-    <link rel="stylesheet" href="css/quick_select_table.css" type="text/css" media="screen" />
-
-  <!-- Check Box -->
-    <link href="css/checkbox.css" rel="stylesheet" type="text/css">
-    <link href="css/sticky.css" rel="stylesheet" type="text/css">
-
-    <!-- Modernizr -->
-  <script src="js/modernizr.js"></script>
-
-	<!-- block right event -->
-	<style type="text/css">
-		body {
+	<head>
+		<meta content="charset=utf-8">
+		<title>[Photo Demo]</title>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<!-- Demo CSS -->
+		<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../flexslider.css" type="text/css" media="screen" />
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon-6/favicon.ico"/>
+		<!-- Quick Selection Table CSS -->
+		<link rel="stylesheet" href="css/quick_select_table.css" type="text/css" media="screen" />
+		<!-- Check Box -->
+		<link href="css/checkbox.css" rel="stylesheet" type="text/css">
+		<link href="css/sticky.css" rel="stylesheet" type="text/css">
+		<!-- Modernizr -->
+		<script src="js/modernizr.js"></script>
+		<!-- block right event -->
+		<style type="text/css">
+			body {
 			-moz-user-select : none;
 			-webkit-user-select: none;
-		}
-  </style>
-
-
-</head>
-<body class="loading">
-
-  <div id="container" class="cf">
-    <header role="navigation">
-      <center><img id='logo_img' name='logo_img' src="images/tuesday.png" alt="(^__^)" height='100' width='250'/></center>
-	  <br/>
-      <center>
-      <h1>(sailplaneTW's photo)</h1>
-      <!--<h2 id='showing_image_name' name='showing_image_name'></h2>-->
-      <br/>
-
-      <center id='quick_selection_table_location_1' name='quick_selection_table_location_1'></center>
-      <!-- Quick Selection Table -->
-      <div class="CSSTableGenerator" id='quick_selection_table_div' name='quick_selection_table_div'>
-      <table id='quick_selection_table' name='quick_selection_table' role='quick_selection_table'>
-        <tr>
-            <td colspan='4'>快 速 選 單</td>
-        </tr>
-        <tr>
-            <td id='qtd0' name='qtd0'><img src='images/smile.png'></img></td>
-            <td id='qtd1' name='qtd1'><img src='images/smile.png'></img></td>
-            <td id='qtd2' name='qtd2'><img src='images/smile.png'></img></td>
-            <td id='qtd3' name='qtd3'><img src='images/smile.png'></img></td>
-        </tr>
-        <tr>
-            <td id='qtd4' name='qtd4'><img src='images/smile.png'></img></td>
-            <td id='qtd5' name='qtd5'><img src='images/smile.png'></img></td>
-            <td id='qtd6' name='qtd6'><img src='images/smile.png'></img></td>
-            <td id='qtd7' name='qtd7'><img src='images/smile.png'></img></td>
-        </tr>
-        <tr>
-            <td id='qtd8' name='qtd8'><img src='images/smile.png'></img></td>
-            <td id='qtd9' name='qtd9'><img src='images/smile.png'></img></td>
-            <td id='qtd10' name='qtd10'><img src='images/smile.png'></img></td>
-            <td id='qtd11' name='qtd11'><img src='images/smile.png'></img></td>
-        </tr>
-        <tr>
-            <td id='qtd12' name='qtd12'><img src='images/smile.png'></img></td>
-            <td id='qtd13' name='qtd13'><img src='images/smile.png'></img></td>
-            <td id='qtd14' name='qtd14'><img src='images/smile.png'></img></td>
-            <td id='qtd15' name='qtd15'><img src='images/smile.png'></img></td>
-        </tr>
-      </table>
-      </div>
-
-      <br/>
-      <br/>
-
-      <!--
-	  <img id='ok_selection' name='ok_selection' src='images/ok-trans.png' width='100'>&nbsp;&nbsp;&nbsp;&nbsp;<img id='no_selection' name='no_selection' src='images/no-trans.png' width='100'>
-
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-
-	  <img id='prevpage_img' name='prevpage_img' src='images/prevpage.png' title="We ask for your age only for statistical purposes.">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <img id='nextpage_img' name='nextpage_img' src='images/nextpage.png'>
-      -->
-
-      </center>
-    </header>
-
-    <div id="main" role="main">
-      <section class="slider">
-        <div id="slider" class="flexslider">
-          <ul class="slides">
-          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img0' name='img0' alt='kitchen_adventurer_cheesecake_brownie' /></li>
-          <li><img src="images/kitchen_adventurer_lemon.jpg" id='img1' name='img1'  alt='kitchen_adventurer_lemon' /></li>
-          <li><img src="images/kitchen_adventurer_donut.jpg" id='img2' name='img2' alt='kitchen_adventurer_donut' /></li>
-          <li><img src="images/kitchen_adventurer_caramel.jpg" id='img3' name='img3' alt='kitchen_adventurer_caramel' /></li>
-          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img4' name='img4' alt='kitchen_adventurer_cheesecake_brownie' /></li>
-          <li><img src="images/kitchen_adventurer_lemon.jpg" id='img5' name='img5' alt='kitchen_adventurer_lemon' /></li>
-          <li><img src="images/kitchen_adventurer_donut.jpg" id='img6' name='img6' alt='kitchen_adventurer_donut' /></li>
-          <li><img src="images/kitchen_adventurer_caramel.jpg" id='img7' name='img7' alt='kitchen_adventurer_caramel' /></li>
-          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img8' name='img8' alt='kitchen_adventurer_cheesecake_brownie' /></li>
-          <li><img src="images/kitchen_adventurer_lemon.jpg" id='img9' name='img9' alt='kitchen_adventurer_lemon' /></li>
-          <li><img src="images/kitchen_adventurer_donut.jpg" id='img10' name='img10' alt='kitchen_adventurer_donut' /></li>
-          <li><img src="images/kitchen_adventurer_caramel.jpg" id='img11' name='img11' alt='kitchen_adventurer_caramel' /></li>
-
-          <!--
-          <li><img src="../photo/germany_1001.jpg" id='img12' name='img12' alt='germany_1001' /></li>
-          <li><img src="../photo/green_meadow_2-HD.jpg" id='img13' name='img13' alt='green_meadow_2-HD' /></li>
-          <li><img src="../photo/IMAG0063_1.jpg" id='img14' name='img14' alt='IMAG0063_1' /></li>
-          -->
-          </ul>
-		  <div class='cbcontainer' id='cbcontainer_div' name='cbcontainer_div'>
-
-		  <div id='checkbox_div0' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
-		  <input type="checkbox" id="cbobj0"/>
-		  <label for="cbobj0" class="check-box" id='cbobjlabel0'></label>
-		  </div>
-		  
-		  <div id='checkbox_div1' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
-		  <input type="checkbox" id="cbobj1" />
-		  <label for="cbobj1" class="check-box" id='cbobjlabel1'></label>
-		  </div>
-		  
-		  </div>
-        </div>
-
-        <!--
-        <div id="carousel" class="flexslider">
-          <ul class="slides">
-          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_donut.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_donut.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_donut.jpg" /></li>
-          <li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
-          <li><img src="../photo/germany_1001.jpg" /></li>
-          <li><img src="../photo/green_meadow_2-HD.jpg" /></li>
-          <li><img src="../photo/IMAG0063_1.jpg" /></li>
-          </ul>
-        </div>
-        -->
-      </section>
-      <aside>
-      <center id='quick_selection_table_location_2' name='quick_selection_table_location_2'></center>
-      </aside>
-    </div>
-
-  </div>
-
-  <!-- save data in page -->
-  <p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
-  <p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
-
-  <!-- jQuery -->
-  <script src="../jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
-
-  <!-- FlexSlider -->
-  <script defer src="../jquery.flexslider.js"></script>
-
-  <script type="text/javascript">
-	function show_check_box(idx, is_visible) {
-              $('#checkbox_div'+idx).css('visibility', is_visible);
-              $('#cbobj'+idx).css('visibility', is_visible);
-              $('#cbobjlabel'+idx).css('visibility', is_visible);
-
-              if(is_visible === 'visible')
-              $('#checkbox_div'+idx).css('z-index', '2');
-              else
-              $('#checkbox_div'+idx).css('z-index', '-100');
-	}
-
-    function set_checkbox_visible(idx) {
-        for(var i=0;i<16;i++) {
-            show_check_box(i, 'hidden');
-        }
-
-        show_check_box(idx, 'visible');
-    }
-
-    function set_all_checkbox_invisible() {
-        for(var i=0;i<16;i++) {
-            show_check_box(i, 'hidden');
-        }
-    }
-
-    var is_jump_from_qtb = false;
-
-
-    $(function(){
-      SyntaxHighlighter.all();
-    });
-    $(window).load(function(){
-    /*
-      $('#carousel').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        itemWidth: 210,
-        itemMargin: 5,
-        asNavFor: '#slider'
-      });
-    */
-
-      $('#slider').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        sync: "#carousel",
-        start: function(slider){
-          $('body').removeClass('loading');
-        },
-		before: function(slider) {
-            set_all_checkbox_invisible();
-		},
-        after: function(slider) {
-            $('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
-            for(var i=0; i<=16 ; i++) {
-                $('#qtd'+i).css('background-color', '#fcffba');
-                $('#qtd'+i).hover(
-                    function() {
-                        $(this).css('opacity', '0.5');
-                        $(this).css('background-color', '#ffff45');
-                    },
-                    function() {
-                        $(this).css('opacity', '1');
-                        $(this).css('background-color', '#fcffba');
-                    }
-                );
-            }
-            $('#qtd'+slider.currentSlide).css('background-color', '#ffba42');
-            $('#qtd'+slider.currentSlide).hover(
-                function() {
-                    $(this).css('opacity', '0.5');
-                    $(this).css('background-color', '#ffba42');
-                },
-                function() {
-                    $(this).css('opacity', '1');
-                    $(this).css('background-color', '#ffba42');
-                }
-            );
-
-            $('#current_img_id').text(slider.currentSlide);
-
-            var ok_list_array = ($('#ok_list').text()).split(',');
-            if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
-			  $('#cbcontainer').checked = true;
-            }
-            else {
-			  $('#cbcontainer').checked = false;
-            }
-
-            if(is_jump_from_qtb == false) {
-                set_checkbox_visible(slider.currentSlide);
-            }
-            is_jump_from_qtb = false;
-        }
-      });
-
-      $('#showing_image_name').text( $('#img0').attr('alt') );
-      $('#qtd0').css('background-color', '#FFFFBB');
-      $('#current_img_id').text('0');
-
-      $("#quick_selection_table td").click(function() {
-          var column_num = parseInt( $(this).index() ) + 1;
-          var row_num = parseInt( $(this).parent().index() )+1;
-          if(1<=parseInt(column_num) && parseInt(column_num)<=4 && 2<=parseInt(row_num) && parseInt(row_num)<=5) {
-              var current_td_id = (row_num-2)*4 + (column_num-1);
-              set_all_checkbox_invisible();
-                is_jump_from_qtb = true;
-              $('#slider').flexslider(current_td_id);
-          }
-        });
-
-      function sort_unique(arr) {
-          arr = arr.sort(function (a, b) { return a*1 - b*1; });
-          var ret = [arr[0]];
-          for (var i = 1; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
-              if (arr[i-1] !== arr[i]) {
-                  ret.push(arr[i]);
-              }
-          }
-          return ret;
-      }
-
-      $(window).resize(function() {
-          if($(window).width() < 768) {
-              $('#quick_selection_table_div').appendTo('#quick_selection_table_location_2');
-          }
-          else {
-              $('#quick_selection_table_div').appendTo('#quick_selection_table_location_1');
-          }
-      });
-
-
-	  });
-
-	$('#cbcontainer_div').css('visibility', 'hidden');
-
-	for(var i=0;i<16;i++) {
-
-		$("#cbobj"+i).change(function() {
-			if($(this).is(':checked') == true) {
-                var ok_list_array = ($('#ok_list').text()).split(',');
-                if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
-                ok_list_array.push(parseInt($('#current_img_id').text()));
-                ok_list_array = sort_unique(ok_list_array);
-                $('#ok_list').text(ok_list_array.toString());
 			}
+		</style>
+	</head>
+	<body class="loading">
+		<div id="container" class="cf">
+			<header role="navigation">
+				<center><img id='logo_img' name='logo_img' src="images/tuesday.png" alt="(^__^)" height='100' width='250'/></center>
+				<br/>
+				<center>
+					<h1>(sailplaneTW's photo)</h1>
+					<!--<h2 id='showing_image_name' name='showing_image_name'></h2>-->
+					<br/>
+					<center id='quick_selection_table_location_1' name='quick_selection_table_location_1'></center>
+					<!-- Quick Selection Table -->
+					<div class="CSSTableGenerator" id='quick_selection_table_div' name='quick_selection_table_div'>
+						<table id='quick_selection_table' name='quick_selection_table' role='quick_selection_table'>
+							<tr>
+								<td colspan='4'>快 速 選 單</td>
+							</tr>
+							<tr>
+								<td id='qtd0' name='qtd0'><img src='images/smile.png'></img></td>
+								<td id='qtd1' name='qtd1'><img src='images/smile.png'></img></td>
+								<td id='qtd2' name='qtd2'><img src='images/smile.png'></img></td>
+								<td id='qtd3' name='qtd3'><img src='images/smile.png'></img></td>
+							</tr>
+							<tr>
+								<td id='qtd4' name='qtd4'><img src='images/smile.png'></img></td>
+								<td id='qtd5' name='qtd5'><img src='images/smile.png'></img></td>
+								<td id='qtd6' name='qtd6'><img src='images/smile.png'></img></td>
+								<td id='qtd7' name='qtd7'><img src='images/smile.png'></img></td>
+							</tr>
+							<tr>
+								<td id='qtd8' name='qtd8'><img src='images/smile.png'></img></td>
+								<td id='qtd9' name='qtd9'><img src='images/smile.png'></img></td>
+								<td id='qtd10' name='qtd10'><img src='images/smile.png'></img></td>
+								<td id='qtd11' name='qtd11'><img src='images/smile.png'></img></td>
+							</tr>
+							<tr>
+								<td id='qtd12' name='qtd12'><img src='images/smile.png'></img></td>
+								<td id='qtd13' name='qtd13'><img src='images/smile.png'></img></td>
+								<td id='qtd14' name='qtd14'><img src='images/smile.png'></img></td>
+								<td id='qtd15' name='qtd15'><img src='images/smile.png'></img></td>
+							</tr>
+						</table>
+					</div>
+					<br/>
+					<br/>
+					<!--
+						<img id='ok_selection' name='ok_selection' src='images/ok-trans.png' width='100'>&nbsp;&nbsp;&nbsp;&nbsp;<img id='no_selection' name='no_selection' src='images/no-trans.png' width='100'>
+						
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+						
+						<img id='prevpage_img' name='prevpage_img' src='images/prevpage.png' title="We ask for your age only for statistical purposes.">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<img id='nextpage_img' name='nextpage_img' src='images/nextpage.png'>
+						-->
+				</center>
+			</header>
+			<div id="main" role="main">
+				<section class="slider">
+					<div id="slider" class="flexslider">
+						<ul class="slides">
+							<li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img0' name='img0' alt='kitchen_adventurer_cheesecake_brownie' /></li>
+							<li><img src="images/kitchen_adventurer_lemon.jpg" id='img1' name='img1'  alt='kitchen_adventurer_lemon' /></li>
+							<li><img src="images/kitchen_adventurer_donut.jpg" id='img2' name='img2' alt='kitchen_adventurer_donut' /></li>
+							<li><img src="images/kitchen_adventurer_caramel.jpg" id='img3' name='img3' alt='kitchen_adventurer_caramel' /></li>
+							<li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img4' name='img4' alt='kitchen_adventurer_cheesecake_brownie' /></li>
+							<li><img src="images/kitchen_adventurer_lemon.jpg" id='img5' name='img5' alt='kitchen_adventurer_lemon' /></li>
+							<li><img src="images/kitchen_adventurer_donut.jpg" id='img6' name='img6' alt='kitchen_adventurer_donut' /></li>
+							<li><img src="images/kitchen_adventurer_caramel.jpg" id='img7' name='img7' alt='kitchen_adventurer_caramel' /></li>
+							<li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img8' name='img8' alt='kitchen_adventurer_cheesecake_brownie' /></li>
+							<li><img src="images/kitchen_adventurer_lemon.jpg" id='img9' name='img9' alt='kitchen_adventurer_lemon' /></li>
+							<li><img src="images/kitchen_adventurer_donut.jpg" id='img10' name='img10' alt='kitchen_adventurer_donut' /></li>
+							<li><img src="images/kitchen_adventurer_caramel.jpg" id='img11' name='img11' alt='kitchen_adventurer_caramel' /></li>
+							<!--
+								<li><img src="../photo/germany_1001.jpg" id='img12' name='img12' alt='germany_1001' /></li>
+								<li><img src="../photo/green_meadow_2-HD.jpg" id='img13' name='img13' alt='green_meadow_2-HD' /></li>
+								<li><img src="../photo/IMAG0063_1.jpg" id='img14' name='img14' alt='IMAG0063_1' /></li>
+								-->
+						</ul>
+						<div class='cbcontainer' id='cbcontainer_div' name='cbcontainer_div'>
+							<div id='checkbox_div0' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
+								<input type="checkbox" id="cbobj0"/>
+								<label for="cbobj0" class="check-box" id='cbobjlabel0'></label>
+							</div>
+							<div id='checkbox_div1' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
+								<input type="checkbox" id="cbobj1" />
+								<label for="cbobj1" class="check-box" id='cbobjlabel1'></label>
+							</div>
+						</div>
+					</div>
+					<!--
+						<div id="carousel" class="flexslider">
+						<ul class="slides">
+						<li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_donut.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_donut.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_lemon.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_donut.jpg" /></li>
+						<li><img src="images/kitchen_adventurer_caramel.jpg" /></li>
+						<li><img src="../photo/germany_1001.jpg" /></li>
+						<li><img src="../photo/green_meadow_2-HD.jpg" /></li>
+						<li><img src="../photo/IMAG0063_1.jpg" /></li>
+						</ul>
+						</div>
+						-->
+				</section>
+				<aside>
+					<center id='quick_selection_table_location_2' name='quick_selection_table_location_2'></center>
+				</aside>
+			</div>
+		</div>
+		<!-- save data in page -->
+		<p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
+		<p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
+		<!-- jQuery -->
+		<script src="../jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
+		<!-- FlexSlider -->
+		<script defer src="../jquery.flexslider.js"></script>
+		<script type="text/javascript">
+			function show_check_box(idx, is_visible) {
+			    $('#checkbox_div'+idx).css('visibility', is_visible);
+			    $('#cbobj'+idx).css('visibility', is_visible);
+			    $('#cbobjlabel'+idx).css('visibility', is_visible);
+			
+			    if(is_visible === 'visible')
+			        $('#checkbox_div'+idx).css('z-index', '2');
+			    else
+			        $('#checkbox_div'+idx).css('z-index', '-100');
+			}
+			
+			function set_checkbox_visible(idx) {
+			    for(var i=0;i<16;i++) {
+			        show_check_box(i, 'hidden');
+			    }
+			
+			    show_check_box(idx, 'visible');
+			}
+			
+			function set_all_checkbox_invisible() {
+			    for(var i=0;i<16;i++) {
+			        show_check_box(i, 'hidden');
+			    }
+			}
+			
+			var is_jump_from_qtb = false;
+			
+			
+			$(function(){
+			        SyntaxHighlighter.all();
+			        });
+			$(window).load(function(){
+			        /*
+			           $('#carousel').flexslider({
+			animation: "slide",
+			controlNav: false,
+			animationLoop: false,
+			slideshow: false,
+			itemWidth: 210,
+			itemMargin: 5,
+			asNavFor: '#slider'
+			});
+			         */
+			
+			        $('#slider').flexslider({
+			animation: "slide",
+			controlNav: false,
+			animationLoop: false,
+			slideshow: false,
+			sync: "#carousel",
+			start: function(slider){
+			$('body').removeClass('loading');
+			},
+			before: function(slider) {
+			set_all_checkbox_invisible();
+			},
+			after: function(slider) {
+			$('#showing_image_name').text( $('#img'+slider.currentSlide).attr('alt') );
+			for(var i=0; i<=16 ; i++) {
+			$('#qtd'+i).css('background-color', '#fcffba');
+			$('#qtd'+i).hover(
+			    function() {
+			    $(this).css('opacity', '0.5');
+			    $(this).css('background-color', '#ffff45');
+			    },
+			    function() {
+			    $(this).css('opacity', '1');
+			    $(this).css('background-color', '#fcffba');
+			    }
+			    );
+			}
+			$('#qtd'+slider.currentSlide).css('background-color', '#ffba42');
+			$('#qtd'+slider.currentSlide).hover(
+			        function() {
+			        $(this).css('opacity', '0.5');
+			        $(this).css('background-color', '#ffba42');
+			        },
+			        function() {
+			        $(this).css('opacity', '1');
+			        $(this).css('background-color', '#ffba42');
+			        }
+			        );
+			
+			$('#current_img_id').text(slider.currentSlide);
+			
+			var ok_list_array = ($('#ok_list').text()).split(',');
+			if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+			    $('#cbcontainer').checked = true;
 			}
 			else {
-                var ok_list_array = ($('#ok_list').text()).split(',');
-                if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
-                    ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
-                ok_list_array = sort_unique(ok_list_array);
-                $('#ok_list').text(ok_list_array.toString());
+			    $('#cbcontainer').checked = false;
 			}
+			
+			if(is_jump_from_qtb == false) {
+			    set_checkbox_visible(slider.currentSlide);
+			}
+			is_jump_from_qtb = false;
 			}
 			});
-	}
-
-	$('#slider').hover(
-		function() {
-		  setTimeout(function() {
-			$('#cbcontainer_div').css('visibility', 'visible');
-            set_checkbox_visible($('#current_img_id').text());
-		  }, 200);
-		},
-		function() {
-		  $('#cbcontainer_div').css('visibility', 'hidden');
-            set_all_checkbox_invisible();
-		}
-	);
-
-  </script>
-
-<script type="text/javascript">
-function iEsc(){ return false; }
-function iRec(){ return true; }
-function DisableKeys() {
-if(event.ctrlKey || event.shiftKey || event.altKey) {
-window.event.returnValue=false;
-iEsc();}
-}
-document.ondragstart=iEsc;
-document.onkeydown=DisableKeys;
-document.oncontextmenu=iEsc;
-if (typeof document.onselectstart !="undefined")
-document.onselectstart=iEsc;
-else{
-document.onmousedown=iEsc;
-document.onmouseup=iRec;
-}
-function DisableRightClick(qsyzDOTnet){
-if (window.Event){
-if (qsyzDOTnet.which == 2 || qsyzDOTnet.which == 3)
-iEsc();}
-else
-if (event.button == 2 || event.button == 3){
-event.cancelBubble = true
-event.returnValue = false;
-iEsc();}
-}
-</script>
-
-
-
-  <!-- Syntax Highlighter -->
-  <script type="text/javascript" src="js/shCore.js"></script>
-  <script type="text/javascript" src="js/shBrushXml.js"></script>
-  <script type="text/javascript" src="js/shBrushJScript.js"></script>
-
-  <!-- Optional FlexSlider Additions -->
-  <script src="js/jquery.easing.js"></script>
-  <script src="js/jquery.mousewheel.js"></script>
-  <script defer src="js/demo.js"></script>
-
-</body>
+			
+			$('#showing_image_name').text( $('#img0').attr('alt') );
+			$('#qtd0').css('background-color', '#FFFFBB');
+			$('#current_img_id').text('0');
+			
+			$("#quick_selection_table td").click(function() {
+			        var column_num = parseInt( $(this).index() ) + 1;
+			        var row_num = parseInt( $(this).parent().index() )+1;
+			        if(1<=parseInt(column_num) && parseInt(column_num)<=4 && 2<=parseInt(row_num) && parseInt(row_num)<=5) {
+			        var current_td_id = (row_num-2)*4 + (column_num-1);
+			        set_all_checkbox_invisible();
+			        is_jump_from_qtb = true;
+			        $('#slider').flexslider(current_td_id);
+			        }
+			        });
+			
+			function sort_unique(arr) {
+			    arr = arr.sort(function (a, b) { return a*1 - b*1; });
+			    var ret = [arr[0]];
+			    for (var i = 1; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
+			        if (arr[i-1] !== arr[i]) {
+			            ret.push(arr[i]);
+			        }
+			    }
+			    return ret;
+			}
+			
+			$(window).resize(function() {
+			        if($(window).width() < 768) {
+			        $('#quick_selection_table_div').appendTo('#quick_selection_table_location_2');
+			        }
+			        else {
+			        $('#quick_selection_table_div').appendTo('#quick_selection_table_location_1');
+			        }
+			        });
+			
+			
+			});
+			
+			$('#cbcontainer_div').css('visibility', 'hidden');
+			
+			for(var i=0;i<16;i++) {
+			
+			    $("#cbobj"+i).change(function() {
+			            if($(this).is(':checked') == true) {
+			            var ok_list_array = ($('#ok_list').text()).split(',');
+			            if(ok_list_array.indexOf($('#current_img_id').text()) == -1) {
+			            ok_list_array.push(parseInt($('#current_img_id').text()));
+			            ok_list_array = sort_unique(ok_list_array);
+			            $('#ok_list').text(ok_list_array.toString());
+			            }
+			            }
+			            else {
+			            var ok_list_array = ($('#ok_list').text()).split(',');
+			            if(ok_list_array.indexOf($('#current_img_id').text()) > -1) {
+			            ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
+			            ok_list_array = sort_unique(ok_list_array);
+			            $('#ok_list').text(ok_list_array.toString());
+			            }
+			            }
+			            });
+			}
+			
+			$('#slider').hover(
+			        function() {
+			        setTimeout(function() {
+			            $('#cbcontainer_div').css('visibility', 'visible');
+			            set_checkbox_visible($('#current_img_id').text());
+			            }, 200);
+			        },
+			        function() {
+			        $('#cbcontainer_div').css('visibility', 'hidden');
+			        set_all_checkbox_invisible();
+			        }
+			        );
+			
+		</script>
+		<script type="text/javascript">
+			function iEsc(){ return false; }
+			function iRec(){ return true; }
+			function DisableKeys() {
+			    if(event.ctrlKey || event.shiftKey || event.altKey) {
+			        window.event.returnValue=false;
+			        iEsc();}
+			}
+			document.ondragstart=iEsc;
+			document.onkeydown=DisableKeys;
+			document.oncontextmenu=iEsc;
+			if (typeof document.onselectstart !="undefined")
+			document.onselectstart=iEsc;
+			else{
+			    document.onmousedown=iEsc;
+			    document.onmouseup=iRec;
+			}
+			function DisableRightClick(qsyzDOTnet){
+			    if (window.Event){
+			        if (qsyzDOTnet.which == 2 || qsyzDOTnet.which == 3)
+			            iEsc();}
+			    else
+			        if (event.button == 2 || event.button == 3){
+			            event.cancelBubble = true
+			                event.returnValue = false;
+			            iEsc();}
+			}
+		</script>
+		<!-- Syntax Highlighter -->
+		<script type="text/javascript" src="js/shCore.js"></script>
+		<script type="text/javascript" src="js/shBrushXml.js"></script>
+		<script type="text/javascript" src="js/shBrushJScript.js"></script>
+		<!-- Optional FlexSlider Additions -->
+		<script src="js/jquery.easing.js"></script>
+		<script src="js/jquery.mousewheel.js"></script>
+		<script defer src="js/demo.js"></script>
+	</body>
 </html>
