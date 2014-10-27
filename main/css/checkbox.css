@@ -1,17 +1,17 @@
 
 .cbcontainer {
     box-sizing: border-box;
-    padding: 5% 5% 5%;
-    /*padding: 25px 25px 25px;*/
+    /*padding: 5% 5% 5%;*/
+    padding: 25px 25px 25px;
     text-align: center;
-	background-color:#DDDDDD;
+	background-color:transparent;
 	opacity:0.5;
 
     float : right;
     position : absolute;
     top : 5%;
     right : 70%;
-    border : 2px solid #FFF;
+    border : 2px solid transparent;
 	z-index:1;
 }
 
