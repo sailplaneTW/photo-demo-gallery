@@ -16,6 +16,7 @@
         <!-- Modernizr -->
         <script src="js/modernizr.js"></script>
         <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/arrow.css">
         <!-- block right event -->
         <style type="text/css">
             body {
@@ -68,8 +69,13 @@
                     </div>
                     <br id='br1' name='br1'/>
                     <br id='br2' name='br2'/>
-                    <div id="sliderbar" style='width:50%;'></div>
-                    <span class="ui-icon ui-icon-circle-arrow-e"></span>
+                    <div id='sliderbar_arrow_container' style='width:100%;'>
+                        <div id='arrow_prev' name='arrow_prev' style='float:left;width:10%;'><i class="arrow-left"></i></div>
+                        <div style='width:80%;float:left;'>
+                            <div id="sliderbar" style='width:100%;'></div>
+                        </div>
+                        <div id='arrow_next' name='arrow_next' style='float:right;width:10%;'><i class="arrow-right"></i></div>
+                    </div>
                     <p id='debugmsg' name='debugmsg' style='visibility: hidden;'></p>
                 </center>
             </header>
@@ -203,14 +209,14 @@
                     show_check_box(i, 'hidden');
                 }
             }
-
+            
             function is_in_ok_list(idx) {
                 var ok_list_array = ($('#ok_list').text()).split(',');
                 if(ok_list_array.indexOf(idx.toString()) > -1)
                     return true;
                 return false;
             }
-
+            
             $(function(){
                     SyntaxHighlighter.all();
                     });
@@ -297,13 +303,13 @@
                     $('#quick_selection_table_div').appendTo('#quick_selection_table_location_2');
                     $('#br1').appendTo('#quick_selection_table_location_2');
                     $('#br2').appendTo('#quick_selection_table_location_2');
-                    $('#sliderbar').appendTo('#quick_selection_table_location_2');
+                    $('#sliderbar_arrow_container').appendTo('#quick_selection_table_location_2');
                     }
                     else {
                     $('#quick_selection_table_div').appendTo('#quick_selection_table_location_1');
                     $('#br1').appendTo('#quick_selection_table_location_1');
                     $('#br2').appendTo('#quick_selection_table_location_1');
-                    $('#sliderbar').appendTo('#quick_selection_table_location_1');
+                    $('#sliderbar_arrow_container').appendTo('#quick_selection_table_location_1');
                     }
                     });
             
@@ -371,21 +377,21 @@
                     /*set_all_checkbox_invisible();*/
                     }
                     );
-
+            
             set_checkbox_visible(0);
             $('#qtd0').css('background-color', '#fcffba');
             
         </script>
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-         $(function() {
-             $('#sliderbar').slider({
-                 change: function() {
-                     /*alert($(this).slider("value"));*/
-                     $('#qtdtitle').text('快  速  選  單  ['+$(this).slider("value")+" %]");
-                 },
-             });
-         });
+            $(function() {
+                $('#sliderbar').slider({
+                    change: function() {
+                        /*alert($(this).slider("value"));*/
+                        $('#qtdtitle').text('快  速  選  單  ['+$(this).slider("value")+" %]");
+                    },
+                });
+            });
         </script>
         <script type="text/javascript">
             function iEsc(){ return false; }
@@ -425,4 +431,3 @@
         <script defer src="js/demo.js"></script>
     </body>
 </html>
-
