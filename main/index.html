@@ -70,11 +70,11 @@
                     <br id='br1' name='br1'/>
                     <br id='br2' name='br2'/>
                     <div id='sliderbar_arrow_container' style='width:100%;'>
-                        <div id='arrow_prev' name='arrow_prev' style='float:left;width:10%;'><i class="arrow-left"></i></div>
+                        <div id='arrow_prev' name='arrow_prev' style='float:left;width:10%;'><i class="arrow-left" id='prev_page' name='prev_page'></i></div>
                         <div style='width:80%;float:left;'>
                             <div id="sliderbar" style='width:100%;'></div>
                         </div>
-                        <div id='arrow_next' name='arrow_next' style='float:right;width:10%;'><i class="arrow-right"></i></div>
+                        <div id='arrow_next' name='arrow_next' style='float:right;width:10%;'><i class="arrow-right" id='next_page' name='next_page'></i></div>
                     </div>
                     <p id='debugmsg' name='debugmsg' style='visibility: hidden;'></p>
                 </center>
@@ -177,6 +177,7 @@
         <!-- save data in page -->
         <p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
         <p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
+        <p id='current_page' name='current_page' style='visibility: hidden;'></p>
         <!-- jQuery -->
         <script src="../jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
@@ -379,15 +380,30 @@
                     );
             
             set_checkbox_visible(0);
+            $('#current_page').text('0');
             $('#qtd0').css('background-color', '#fcffba');
+            $('#arrow_prev').click(function() {
+                var current_page_num = parseInt($('#current_page').text());
+                if(current_page_num <= 10)
+                    current_page_num = 10;
+                $('#sliderbar').slider('value', current_page_num-10);
+                $('#current_page').text(current_page_num-10);
+            });
+            $('#arrow_next').click(function() {
+                var current_page_num = parseInt($('#current_page').text());
+                if(current_page_num >=90)
+                    current_page_num = 90;
+                $('#sliderbar').slider('value', current_page_num+10);
+                $('#current_page').text(current_page_num+10);
+            });
             
         </script>
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
             $(function() {
                 $('#sliderbar').slider({
+                    step: 10,
                     change: function() {
-                        /*alert($(this).slider("value"));*/
                         $('#qtdtitle').text('快  速  選  單  ['+$(this).slider("value")+" %]");
                     },
                 });
