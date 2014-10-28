@@ -15,6 +15,7 @@
         <link href="css/sticky.css" rel="stylesheet" type="text/css">
         <!-- Modernizr -->
         <script src="js/modernizr.js"></script>
+        <link rel="stylesheet" href="css/jquery-ui.css">
         <!-- block right event -->
         <style type="text/css">
             body {
@@ -37,7 +38,7 @@
                     <div class="CSSTableGenerator" id='quick_selection_table_div' name='quick_selection_table_div'>
                         <table id='quick_selection_table' name='quick_selection_table' role='quick_selection_table'>
                             <tr>
-                                <td colspan='4'>快 速 選 單</td>
+                                <td id='qtdtitle' name='qtdtitle' colspan='4'>快 速 選 單</td>
                             </tr>
                             <tr>
                                 <td id='qtd0' name='qtd0'><img src='images/smile.png' id='qtdimg0' name='qtdimg0'></img></td>
@@ -65,8 +66,10 @@
                             </tr>
                         </table>
                     </div>
-                    <br/>
-                    <br/>
+                    <br id='br1' name='br1'/>
+                    <br id='br2' name='br2'/>
+                    <div id="sliderbar" style='width:50%;'></div>
+                    <span class="ui-icon ui-icon-circle-arrow-e"></span>
                     <p id='debugmsg' name='debugmsg' style='visibility: hidden;'></p>
                 </center>
             </header>
@@ -292,9 +295,15 @@
             $(window).resize(function() {
                     if($(window).width() < 768) {
                     $('#quick_selection_table_div').appendTo('#quick_selection_table_location_2');
+                    $('#br1').appendTo('#quick_selection_table_location_2');
+                    $('#br2').appendTo('#quick_selection_table_location_2');
+                    $('#sliderbar').appendTo('#quick_selection_table_location_2');
                     }
                     else {
                     $('#quick_selection_table_div').appendTo('#quick_selection_table_location_1');
+                    $('#br1').appendTo('#quick_selection_table_location_1');
+                    $('#br2').appendTo('#quick_selection_table_location_1');
+                    $('#sliderbar').appendTo('#quick_selection_table_location_1');
                     }
                     });
             
@@ -366,6 +375,17 @@
             set_checkbox_visible(0);
             $('#qtd0').css('background-color', '#fcffba');
             
+        </script>
+        <script src="js/jquery-ui.js"></script>
+        <script type="text/javascript">
+         $(function() {
+             $('#sliderbar').slider({
+                 change: function() {
+                     /*alert($(this).slider("value"));*/
+                     $('#qtdtitle').text('快  速  選  單  ['+$(this).slider("value")+" %]");
+                 },
+             });
+         });
         </script>
         <script type="text/javascript">
             function iEsc(){ return false; }
