@@ -405,6 +405,7 @@
                     step: 10,
                     change: function() {
                         $('#qtdtitle').text('快  速  選  單  ['+$(this).slider("value")+" %]");
+                        $('#current_page').text($(this).slider("value"));
                     },
                 });
             });
