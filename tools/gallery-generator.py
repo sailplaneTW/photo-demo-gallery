@@ -45,6 +45,7 @@ def main(root_dir, argv):
         # generate file list to main/js/config.js
         print 'Generating file list from /photo ...'
         custom_photo_files = [ f for f in os.listdir(root_dir+'/photo') if os.path.isfile(os.path.join(root_dir+'/photo', f)) ]
+        custom_photo_files.sort();
         remove_data(root_dir+'/main/js/config.js');
         outfile = open(root_dir+'/main/js/config.js', 'wb+');
         outfile.write('var filelist = ['+"\n");
