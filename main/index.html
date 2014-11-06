@@ -106,6 +106,7 @@
                                 -->
                         </ul>
                         <div class='cbcontainer' id='cbcontainer_div' name='cbcontainer_div'>
+                            <!--
                             <div id='checkbox_div0' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>
                                 <input type="checkbox" id="cbobj0"/>
                                 <label for="cbobj0" class="check-box" id='cbobjlabel0'></label>
@@ -170,6 +171,7 @@
                                 <input type="checkbox" id="cbobj15" />
                                 <label for="cbobj15" class="check-box" id='cbobjlabel15'></label>
                             </div>
+                            -->
                         </div>
                     </div>
                 </section>
@@ -194,6 +196,16 @@
             // get filelist here
         </script>
         <script type="text/javascript">
+
+        function checkbox_generator() {
+            var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
+            for(var i=0; i<all_num ;i++) {
+                var checkbox_html = "<div id='checkbox_div"+i+"' style='position:absolute;left:4%;top:4%;background-color:#DDDDDD;visibility:hidden;'>";
+                checkbox_html += "<input type='checkbox' id='cbobj"+i+"' />";
+                checkbox_html += "<label for='cbobj"+i+"' class='check-box' id='cbobjlabel"+i+"'></label></div>";
+                $('#cbcontainer_div').append(checkbox_html);
+            }
+        }
 
         function photos_generator(start_idx) {
             var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
@@ -364,6 +376,7 @@
         }
 
         photos_generator(0);
+        checkbox_generator();
 
         $('#cbcontainer_div').css('visibility', 'hidden');
 
