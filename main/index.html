@@ -84,7 +84,8 @@
             <div id="main" role="main">
                 <section class="slider">
                     <div id="slider" class="flexslider">
-                        <ul class="slides">
+                        <ul class="slides" id='photo_slides_list' name='photo_slides_list'>
+                            <!--
                             <li><img src="images/kitchen_adventurer_cheesecake_brownie.jpg" id='img0' name='img0' alt='kitchen_adventurer_cheesecake_brownie' /></li>
                             <li><img src="images/kitchen_adventurer_lemon.jpg" id='img1' name='img1'  alt='kitchen_adventurer_lemon' /></li>
                             <li><img src="images/kitchen_adventurer_donut.jpg" id='img2' name='img2' alt='kitchen_adventurer_donut' /></li>
@@ -97,6 +98,7 @@
                             <li><img src="images/kitchen_adventurer_lemon.jpg" id='img9' name='img9' alt='kitchen_adventurer_lemon' /></li>
                             <li><img src="images/kitchen_adventurer_donut.jpg" id='img10' name='img10' alt='kitchen_adventurer_donut' /></li>
                             <li><img src="images/kitchen_adventurer_caramel.jpg" id='img11' name='img11' alt='kitchen_adventurer_caramel' /></li>
+                            -->
                             <!--
                                 <li><img src="../photo/germany_1001.jpg" id='img12' name='img12' alt='germany_1001' /></li>
                                 <li><img src="../photo/green_meadow_2-HD.jpg" id='img13' name='img13' alt='green_meadow_2-HD' /></li>
@@ -192,6 +194,15 @@
             // get filelist here
         </script>
         <script type="text/javascript">
+
+        function photos_generator(start_idx) {
+            var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
+            var photo_num = ((start_idx + all_num) < filelist.length) ? (start_idx + all_num) : filelist.length;
+            for(var i=start_idx ; i < photo_num ; i++) {
+                var img_html = "<li><img src='../photo/"+filelist[i]+"' id='img"+i+"' name='img"+i+"' alt='"+filelist[i]+"' /></li>";
+                $('#photo_slides_list').append(img_html);
+            }
+        }
 
         function quick_selection_table_generator(row_num, col_num, append_component) {
 
@@ -350,6 +361,8 @@
             $('#sliderbar_arrow_container').appendTo('#quick_selection_table_location_1');
         }
 
+        photos_generator(0);
+
         $('#cbcontainer_div').css('visibility', 'hidden');
 
         var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
@@ -458,6 +471,7 @@
             });
         </script>
         <script type="text/javascript">
+        /*
             function iEsc(){ return false; }
             function iRec(){ return true; }
             function DisableKeys() {
@@ -484,6 +498,7 @@
                             event.returnValue = false;
                         iEsc();}
             }
+        */
         </script>
         <!-- Syntax Highlighter -->
         <script type="text/javascript" src="js/shCore.js"></script>
