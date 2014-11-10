@@ -200,28 +200,29 @@
         function update_sliderbar(gotopage) {
             gotopage = gotopage || -100;
 
+            var row_num = parseInt($('#row_num').text());
+            var col_num = parseInt($('#col_num').text());
+            var total_page_num = Math.ceil((filelist.length)/(row_num * col_num));
+
             if(gotopage == -100) {
                 $(function() {
-                        var row_num = parseInt($('#row_num').text());
-                        var col_num = parseInt($('#col_num').text());
                         var per_step = parseInt(100/Math.floor((filelist.length)/(row_num * col_num)));
                         $('#sliderbar').slider({
                             step: per_step,
                             change: function() {
-                                $('#qtdtitle').text('快  速  選  單  ['+$(this).slider("value")+" %]");
                                 $('#current_page').text($(this).slider("value"));
+                                var page_num = Math.ceil($(this).slider("value")/per_step);
+                                $('#qtdtitle').text('快  速  選  單  ['+(page_num+1)+"/"+(total_page_num)+"]");
                             },
                         });
 
                         var jump_to_page_num = Math.floor($('#current_img_id').text()/(row_num * col_num));
                         $('#sliderbar').slider({value: (jump_to_page_num*per_step)});
-                        $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num*per_step)+" %]");
                         $('#current_page').text(jump_to_page_num);
+                        $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num+1)+"/"+(total_page_num)+"]");
                         });
             }
             else {
-                var row_num = parseInt($('#row_num').text());
-                var col_num = parseInt($('#col_num').text());
                 var per_step = parseInt(100/Math.floor((filelist.length)/(row_num * col_num)));
                 var jump_to_page_num = (parseInt($('#current_page').text()) + gotopage);
 
@@ -229,7 +230,7 @@
                     return ;
 
                 $('#sliderbar').slider({value: (jump_to_page_num*per_step)});
-                $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num*per_step)+" %]");
+                $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num+1)+"/"+total_page_num+"]");
                 $('#current_page').text(jump_to_page_num);
             }
         }
