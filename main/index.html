@@ -183,7 +183,7 @@
         <!-- save data in page -->
         <p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
         <p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
-        <p id='current_page' name='current_page' style='visibility: hidden;'></p>
+        <p id='current_page' name='current_page' style='visibility: hidden;'>0</p>
         <p id='row_num' name='row_num' style='visibility: hidden;'></p>
         <p id='col_num' name='col_num' style='visibility: hidden;'></p>
         <!-- jQuery -->
@@ -196,6 +196,34 @@
             // get filelist here
         </script>
         <script type="text/javascript">
+
+        function update_quick_selection_table_mapping() {
+            var all_row_num = parseInt($('#row_num').text());
+            var all_col_num = parseInt($('#col_num').text());
+
+            // use to #current_page_num deciding wich page we are in
+            var current_page_num = parseInt($('#current_page').text());
+
+            // compute current page start index
+            var start_idx = Math.floor(current_page_num * (all_row_num * all_col_num));
+
+            // update all mapping link
+            $("#quick_selection_table td").unbind('click');
+            $("#quick_selection_table td").click(function () {
+                var column_num = parseInt($(this).index()) + 1;
+                var row_num = parseInt($(this).parent().index()) + 1;
+
+                var current_td_id = (row_num - 2) * (all_col_num) + (column_num - 1);
+
+                if (1 <= parseInt(column_num) && parseInt(column_num) <= all_col_num &&
+                    2 <= parseInt(row_num) && parseInt(row_num) <= (all_row_num+1))
+                {
+                    var current_td_id = (row_num - 2) * (all_col_num) + (column_num - 1); // set_all_checkbox_invisible();
+                    current_td_id += start_idx;
+                    $('#slider').flexslider(current_td_id);
+                }
+            });
+        }
 
         function update_sliderbar(gotopage) {
             gotopage = gotopage || -100;
@@ -232,6 +260,8 @@
                 $('#sliderbar').slider({value: (jump_to_page_num*per_step)});
                 $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num+1)+"/"+total_page_num+"]");
                 $('#current_page').text(jump_to_page_num);
+
+                update_quick_selection_table_mapping();
             }
         }
 
@@ -247,7 +277,6 @@
                 },
                 after: function (slider) {
                     $('#showing_image_name').text($('#img' + slider.currentSlide).attr('alt'));
-                    set_quick_selction_table_td();
                     $('#qtd' + slider.currentSlide).css('background-color', '#ffba42');
                     $('#current_img_id').text(slider.currentSlide);
 
@@ -389,12 +418,14 @@
         if ($(window).width() < 768) {
             quick_selection_table_remover();
             quick_selection_table_generator(6, 5, '#quick_selection_table_location_2');
+            update_quick_selection_table_mapping();
             $('#br1').appendTo('#quick_selection_table_location_2');
             $('#br2').appendTo('#quick_selection_table_location_2');
             $('#sliderbar_arrow_container').appendTo('#quick_selection_table_location_2');
         } else {
             quick_selection_table_remover();
             quick_selection_table_generator(6, 4, '#quick_selection_table_location_1');
+            update_quick_selection_table_mapping();
             $('#br1').appendTo('#quick_selection_table_location_1');
             $('#br2').appendTo('#quick_selection_table_location_1');
             $('#sliderbar_arrow_container').appendTo('#quick_selection_table_location_1');
