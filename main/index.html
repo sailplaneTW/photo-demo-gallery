@@ -197,6 +197,27 @@
         </script>
         <script type="text/javascript">
 
+        function update_quick_selection_table_color(current_location) {
+            current_location = current_location || -1;
+
+            var all_row_num = parseInt($('#row_num').text());
+            var all_col_num = parseInt($('#col_num').text());
+
+            var ok_list_array = ($('#ok_list').text()).split(',');
+            var start_idx = Math.floor(parseInt($('#current_page').text()) * (all_row_num * all_col_num));
+            for(var i=0;i<parseInt(all_row_num * all_col_num);i++) {
+                if (ok_list_array.indexOf((start_idx+i).toString()) > -1) {
+                    $('#qtd' + i).css('background-color', '#FFC8B4');
+                }
+                else {
+                    $('#qtd' + i).css('background-color', '#fcffba');
+                }
+            }
+
+            if(current_location != -1)
+                $('#qtd' + current_location).css('background-color', '#ffba42');
+        }
+
         function update_quick_selection_table_mapping() {
             var all_row_num = parseInt($('#row_num').text());
             var all_col_num = parseInt($('#col_num').text());
@@ -262,6 +283,10 @@
                 $('#current_page').text(jump_to_page_num);
 
                 update_quick_selection_table_mapping();
+                var current_page_num = parseInt($('#current_page').text());
+                var start_idx = Math.floor(current_page_num * (row_num * col_num));
+                $('#current_img_id').text(start_idx.toString());
+                update_quick_selection_table_color(start_idx);
             }
         }
 
@@ -274,6 +299,15 @@
                 sync: "#carousel",
                 start: function (slider) {
                     $('body').removeClass('loading');
+                },
+                before: function(slider) {
+                    var ok_list_array = ($('#ok_list').text()).split(',');
+                    if (ok_list_array.indexOf((slider.currentSlide).toString()) > -1) {
+                        $('#qtd' + slider.currentSlide).css('background-color', '#FFC8B4');
+                    }
+                    else {
+                        $('#qtd' + slider.currentSlide).css('background-color', '#fcffba');
+                    }
                 },
                 after: function (slider) {
                     $('#showing_image_name').text($('#img' + slider.currentSlide).attr('alt'));
