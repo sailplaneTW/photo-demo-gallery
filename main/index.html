@@ -266,9 +266,18 @@
                         $('#sliderbar').slider({
                             step: per_step,
                             change: function() {
-                                $('#current_page').text($(this).slider("value"));
+                                $('#current_page').text(Math.floor($(this).slider("value")/per_step));
                                 var page_num = Math.ceil($(this).slider("value")/per_step);
                                 $('#qtdtitle').text('快  速  選  單  ['+(page_num+1)+"/"+(total_page_num)+"]");
+
+                                update_quick_selection_table_mapping();
+                                var current_page_num = parseInt($('#current_page').text());
+                                var start_idx = Math.floor(current_page_num * (row_num * col_num));
+                                $('#current_img_id').text(start_idx.toString());
+                                update_quick_selection_table_color(start_idx);
+
+                                update_checkbox();
+                                $('#slider').flexslider(start_idx);
                             },
                         });
 
