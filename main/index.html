@@ -181,11 +181,11 @@
             </div>
         </div>
         <!-- save data in page -->
-        <p id='current_img_id' name='current_img_id' style='/*visibility: hidden;*/'>0</p>
-        <p id='ok_list' name='ok_list' style='/*visibility: hidden;*/'></p>
-        <p id='current_page' name='current_page' style='/*visibility: hidden;*/'>0</p>
-        <p id='row_num' name='row_num' style='/*visibility: hidden;*/'></p>
-        <p id='col_num' name='col_num' style='/*visibility: hidden;*/'></p>
+        <p id='current_img_id' name='current_img_id' style='visibility: hidden;'>0</p>
+        <p id='ok_list' name='ok_list' style='visibility: hidden;'></p>
+        <p id='current_page' name='current_page' style='visibility: hidden;'>0</p>
+        <p id='row_num' name='row_num' style='visibility: hidden;'></p>
+        <p id='col_num' name='col_num' style='visibility: hidden;'></p>
         <!-- jQuery -->
         <script src="../jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
@@ -301,7 +301,6 @@
                         });
 
                         var jump_to_page_num = Math.floor($('#current_img_id').text()/(row_num * col_num));
-                        alert(jump_to_page_num*per_step);
                         $('#sliderbar').slider({value: (jump_to_page_num*per_step)});
                         $('#current_page').text(jump_to_page_num);
                         $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num+1)+"/"+(total_page_num)+"]");
@@ -631,6 +630,12 @@
                     update_quick_selection_table_thumb();
                     update_quick_selection_table_color(parseInt($('#current_img_id').text()));
                     update_quick_selection_table_mapping();
+
+                    var tmp_current_img_id = $('#current_img_id').text();
+                    var per_step = parseInt(100/Math.floor((filelist.length)/(30)));
+                    $('#sliderbar').slider({value: (parseInt($('#current_page').text())*per_step)});
+                    $('#current_img_id').text(tmp_current_img_id);
+                    $('#slider').flexslider(tmp_current_img_id);
                 } else {
                     $('#current_page').text( Math.floor(parseInt($('#current_img_id').text())/(24)) );
 
@@ -646,6 +651,12 @@
                     update_quick_selection_table_thumb();
                     update_quick_selection_table_color(parseInt($('#current_img_id').text()));
                     update_quick_selection_table_mapping();
+
+                    var tmp_current_img_id = $('#current_img_id').text();
+                    var per_step = parseInt(100/Math.floor((filelist.length)/(30)));
+                    $('#sliderbar').slider({value: (parseInt($('#current_page').text())*per_step)});
+                    $('#current_img_id').text(tmp_current_img_id);
+                    $('#slider').flexslider(tmp_current_img_id);
                 }
             }, 50);
         });
