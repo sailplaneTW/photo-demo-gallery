@@ -2,6 +2,8 @@
 
 import sys, os, getopt
 import shutil
+import subprocess
+import re
 
 def remove_data(f):
     try:
@@ -11,6 +13,19 @@ def remove_data(f):
             shutil.rmtree(f)
     except:
         pass
+
+def generate_thumbnail(src, dst):
+    dim = subprocess.Popen(["identify","-format","\"%w,%h\"", src], stdout=subprocess.PIPE).communicate()[0]
+    (width, height) = [ int(x) for x in re.sub('[\t\r\n"]', '', dim).split(',') ]
+    thumb_width = thumb_height = 48
+    if width > height:
+        thumb_width = 48
+        thumb_height = int( (48.0/width) * height )
+    else:
+        thumb_width = int( (48.0/height) * width )
+        thumb_height = 48
+    os.popen('convert -resize '+str(thumb_width)+'x'+str(thumb_height)+' '+src+' '+dst)
+
 
 def main(root_dir, argv):
     # Initial
@@ -30,6 +45,8 @@ def main(root_dir, argv):
         print "[start clean]"
         print "\tdelete /photo ..."
         remove_data(root_dir+'/photo');
+        print "\tdelete /thumb ..."
+        remove_data(root_dir+'/thumb');
         print "\tdelete /main/js/config.js ..."
         remove_data(root_dir+'/main/js/config.js');
         print "[clean done]"
@@ -41,6 +58,14 @@ def main(root_dir, argv):
         os.makedirs(root_dir+'/photo')
         [ shutil.copy(root_dir+'/raw/'+f, root_dir+'/photo/'+f) for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
         print 'Preprocessing for raw photo in /raw ... done'
+
+        # generate thumbnail
+        print 'Generating thumbnail for raw photo in /thumb ...'
+        remove_data(root_dir+'/thumb');
+        os.makedirs(root_dir+'/thumb')
+        [ generate_thumbnail(root_dir+'/raw/'+f, root_dir+'/thumb/'+f) for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
+        print 'Generating thumbnail for raw photo in /thumb ... done'
+
 
         # generate file list to main/js/config.js
         print 'Generating file list from /photo ...'
