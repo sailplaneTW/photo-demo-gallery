@@ -24,8 +24,26 @@
             -webkit-user-select: none;
             }
         </style>
+        <!-- floating result -->
+        <style type="text/css">
+        <!--
+        #fl_menu{position:absolute; top:50px; left:90%; z-index:9999; width:150px; height:50px;}
+        #fl_menu .label{padding-left:20px; line-height:50px; font-family:"Arial Black", Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; background:#000; color:#fff; letter-spacing:7px;}
+        #fl_menu .menu{display:none;}
+        #fl_menu .menu .menu_item{display:block; background:#2E2E2E; color:#bbb; border-top:1px solid #333; padding:10px 20px; font-family:Arial, Helvetica, sans-serif; font-size:12px; text-decoration:none;}
+        #fl_menu .menu a.menu_item:hover{background:#333; color:#fff;}
+        .content{width:520px; margin:50px auto;}
+        -->
+        </style>
+        <script type="text/javascript" src="jquery.easing.1.3.js"></script>
     </head>
     <body class="loading">
+        <div id="fl_menu">
+            <div class="label">RESULT</div>
+            <div class="menu">
+            <div class='menu_item' id='selected_result' name='selected_result'>No Data ...</div>
+            </div>
+        </div>
         <div id="container" class="cf">
             <header role="navigation">
                 <center><img id='logo_img' name='logo_img' src="images/tuesday.png" alt="(^__^)" height='100' width='250'/></center>
@@ -505,6 +523,19 @@
             return false;
         }
 
+        function adjust_ok_list_result() {
+            var ok_list_array = ($('#ok_list').text()).split(',');
+            if(ok_list_array.length == 1)
+                $('#selected_result').text('No data ...');
+            else {
+                var result_data = '';
+                for(var i=0;i<ok_list_array.length;i++)
+                    if(ok_list_array[i] != '')
+                        result_data += filelist[parseInt(ok_list_array[i])] + "\n";
+                $('#selected_result').text(result_data);
+            }
+        }
+
         $(function () {
             SyntaxHighlighter.all();
         });
@@ -589,6 +620,7 @@
                         ok_list_array = sort_unique(ok_list_array);
                         $('#ok_list').text(ok_list_array.toString());
                         $('#qtd' + (parseInt($('#current_img_id').text())%(all_num))).css('background-color', '#FFC8B4');
+                        adjust_ok_list_result();
                     }
                 } else {
                     var sort_unique = function (arr) {
@@ -609,6 +641,7 @@
                         ok_list_array = sort_unique(ok_list_array);
                         $('#ok_list').text(ok_list_array.toString());
                         $('#qtd' + (parseInt($('#current_img_id').text())%(all_num))).css('background-color', '#ffba42');
+                        adjust_ok_list_result();
                     }
                 }
             });
@@ -725,5 +758,59 @@
         <script src="js/jquery.easing.js"></script>
         <script src="js/jquery.mousewheel.js"></script>
         <script defer src="js/demo.js"></script>
+
+		<script>
+
+		//config
+
+		$float_speed=1500; //milliseconds
+
+		$float_easing="easeOutQuint";
+
+		$menu_fade_speed=500; //milliseconds
+
+		$closed_menu_opacity=0.75;
+
+		//cache vars
+
+		$fl_menu=$("#fl_menu");
+		$fl_menu_menu=$("#fl_menu .menu");
+		$fl_menu_label=$("#fl_menu .label");
+
+		$(window).load(function() {
+		    menuPosition=$('#fl_menu').position().top;
+
+		    FloatMenu();
+
+		    $fl_menu.hover(
+		        function(){ //mouse over
+		            $fl_menu_label.fadeTo($menu_fade_speed, 1);
+		            $fl_menu_menu.fadeIn($menu_fade_speed);
+		        },
+		        function(){ //mouse out
+		            $fl_menu_label.fadeTo($menu_fade_speed, $closed_menu_opacity);
+		            $fl_menu_menu.fadeOut($menu_fade_speed);
+		        }
+		    );
+		});
+
+		$(window).scroll(function () {
+		    FloatMenu();
+		});
+
+		function FloatMenu(){
+		    var scrollAmount=$(document).scrollTop();
+		    var newPosition=menuPosition+scrollAmount;
+
+		    if($(window).height()<$fl_menu.height()+$fl_menu_menu.height()){
+		        $fl_menu.css("top",menuPosition);
+		    } else {
+		        $fl_menu.stop().animate({top: newPosition}, $float_speed, $float_easing);
+		    }
+		}
+
+		</script>
+
+
     </body>
 </html>
