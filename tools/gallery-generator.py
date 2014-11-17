@@ -26,6 +26,20 @@ def generate_thumbnail(src, dst):
         thumb_height = 48
     os.popen('convert -resize '+str(thumb_width)+'x'+str(thumb_height)+' '+src+' '+dst)
 
+def get_max_width_and_height(dst_dir):
+    max_width = max_height = 0
+    for f in os.listdir(dst_dir):
+        if os.path.isfile(os.path.join(dst_dir, f)):
+            dim = subprocess.Popen(["identify","-format","\"%w,%h\"", os.path.join(dst_dir, f)], stdout=subprocess.PIPE).communicate()[0]
+            (width, height) = [ int(x) for x in re.sub('[\t\r\n"]', '', dim).split(',') ]
+            if width > max_width:
+                max_width = width
+            if height > max_height:
+                max_height = height
+    return max_width, max_height
+
+def picture_postprocessing(src, dst, background_image):
+    os.popen('composite  -gravity center '+src+' '+background_image+' '+dst)
 
 def main(root_dir, argv):
     # Initial
@@ -54,9 +68,11 @@ def main(root_dir, argv):
     else:
         # TODO preprocessing photos in /raw for fixing size
         print 'Preprocessing for raw photo in /raw ...'
+        (max_width, max_height) = get_max_width_and_height(root_dir + '/raw')
+        os.popen('convert -resize '+str(max_width)+'x'+str(max_height)+'! '+'main/images/f5f5dc.png'+' '+'/tmp/background.png')
         remove_data(root_dir+'/photo');
         os.makedirs(root_dir+'/photo')
-        [ shutil.copy(root_dir+'/raw/'+f, root_dir+'/photo/'+f) for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
+        [ picture_postprocessing(root_dir+'/raw/'+f, root_dir+'/photo/'+f, '/tmp/background.png') for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
         print 'Preprocessing for raw photo in /raw ... done'
 
         # generate thumbnail
