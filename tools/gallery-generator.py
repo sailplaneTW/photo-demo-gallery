@@ -4,6 +4,7 @@ import sys, os, getopt
 import shutil
 import subprocess
 import re
+import uuid
 
 def remove_data(f):
     try:
@@ -38,8 +39,16 @@ def get_max_width_and_height(dst_dir):
                 max_height = height
     return max_width, max_height
 
-def picture_postprocessing(src, dst, background_image):
-    os.popen('composite  -gravity center '+src+' '+background_image+' '+dst)
+def picture_postprocessing(src, dst, background_image, max_width, max_height):
+    dim = subprocess.Popen(["identify","-format","\"%w,%h\"", src], stdout=subprocess.PIPE).communicate()[0]
+    (width, height) = [ int(x) for x in re.sub('[\t\r\n"]', '', dim).split(',') ]
+    if (width > max_width) or (height > max_height) :
+        width = max_width
+        height = max_height
+    unique_filename = '/tmp/' + str(uuid.uuid4()) + os.path.splitext(src)[-1]
+    os.popen('convert -resize '+str(width)+'x'+str(height)+' '+src+' '+unique_filename)
+    os.popen('composite  -gravity center '+unique_filename+' '+background_image+' '+dst)
+    remove_data(unique_filename);
 
 def main(root_dir, argv):
     # Initial
@@ -69,10 +78,12 @@ def main(root_dir, argv):
         # TODO preprocessing photos in /raw for fixing size
         print 'Preprocessing for raw photo in /raw ...'
         (max_width, max_height) = get_max_width_and_height(root_dir + '/raw')
+        max_width = int(max_width * 0.7)
+        max_height = int(max_height * 0.7)
         os.popen('convert -resize '+str(max_width)+'x'+str(max_height)+'! '+'main/images/f5f5dc.png'+' '+'/tmp/background.png')
         remove_data(root_dir+'/photo');
         os.makedirs(root_dir+'/photo')
-        [ picture_postprocessing(root_dir+'/raw/'+f, root_dir+'/photo/'+f, '/tmp/background.png') for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
+        [ picture_postprocessing(root_dir+'/raw/'+f, root_dir+'/photo/'+f, '/tmp/background.png', max_width, max_height) for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
         print 'Preprocessing for raw photo in /raw ... done'
 
         # generate thumbnail
