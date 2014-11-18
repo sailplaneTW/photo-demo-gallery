@@ -273,6 +273,7 @@
         function update_quick_selection_table_thumb() {
             var row_num = parseInt($('#row_num').text());
             var col_num = parseInt($('#col_num').text());
+            $('#current_page').text( Math.floor(parseInt($('#current_img_id').text())/(row_num*col_num)) );
             var start_idx = Math.floor(parseInt($('#current_page').text()) * (row_num * col_num));
 
             for(var i=0;i<(row_num * col_num);i++) {
