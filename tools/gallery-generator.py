@@ -22,10 +22,14 @@ def generate_thumbnail(src, dst):
     if width > height:
         thumb_width = 48
         thumb_height = int( (48.0/width) * height )
+        thumb_dim = thumb_width
+        scale = 'x'+str(thumb_dim)
     else:
         thumb_width = int( (48.0/height) * width )
         thumb_height = 48
-    os.popen('convert -resize '+str(thumb_width)+'x'+str(thumb_height)+' '+src+' '+dst)
+        thumb_dim = thumb_height
+        scale = str(thumb_dim)+'x'
+    os.popen('convert -filter lanczos -resize '+scale+' -gravity center -crop '+str(thumb_dim)+'x'+str(thumb_dim)+'+0+0 +repage '+src+' '+dst)
 
 def get_max_width_and_height(dst_dir):
     max_width = max_height = 0
