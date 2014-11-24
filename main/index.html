@@ -38,7 +38,7 @@
         <script type="text/javascript" src="jquery.easing.1.3.js"></script>
     </head>
     <body class="loading">
-        <div id="fl_menu">
+        <div id="fl_menu" style='visibility:hidden;'>
             <div class="label">RESULT</div>
             <div class="menu">
             <div class='menu_item' id='selected_result' name='selected_result'>No Data ...</div>
@@ -364,6 +364,7 @@
                 sync: "#carousel",
                 start: function (slider) {
                     $('body').removeClass('loading');
+                    $('#fl_menu').css('visibility', 'visible');
                 },
                 before: function(slider) {
                 },
@@ -371,7 +372,6 @@
 
                     //    update_quick_selection_table_mapping();
                     $('#img'+slider.currentSlide).attr('src', '../photo/'+filelist[slider.currentSlide]); 
-                    //alert('../photo/'+filelist[slider.currentSlide]); 
 /*
                     slider.currentSlide = (parseInt(slider.currentSlide)%(parseInt(row_num*col_num))) + (parseInt($('#current_page').text()) * (row_num * col_num));
                     alert(parseInt(slider.currentSlide) + ' - ' + parseInt(row_num*col_num));
