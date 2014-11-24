@@ -111,5 +111,8 @@ def main(root_dir, argv):
         outfile.close()
         print 'Generating file list from /photo ... done'
 
+        # copy background image
+        shutil.copyfile('/tmp/background.png', root_dir+'/photo/background.png')
+
 if __name__ == '__main__':
     main(os.path.abspath(os.path.dirname(sys.argv[0]) + '/..'), sys.argv[1:])

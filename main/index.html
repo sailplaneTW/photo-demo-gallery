@@ -370,6 +370,8 @@
                 after: function (slider) {
 
                     //    update_quick_selection_table_mapping();
+                    $('#img'+slider.currentSlide).attr('src', '../photo/'+filelist[slider.currentSlide]); 
+                    //alert('../photo/'+filelist[slider.currentSlide]); 
 /*
                     slider.currentSlide = (parseInt(slider.currentSlide)%(parseInt(row_num*col_num))) + (parseInt($('#current_page').text()) * (row_num * col_num));
                     alert(parseInt(slider.currentSlide) + ' - ' + parseInt(row_num*col_num));
@@ -425,7 +427,12 @@
             //var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
             //var photo_num = ((start_idx + all_num) < filelist.length) ? (start_idx + all_num) : filelist.length;
             for(var i=0 ; i < filelist.length ; i++) {
-                var img_html = "<li><img src='../photo/"+filelist[i]+"' id='img"+i+"' name='img"+i+"' alt='"+filelist[i]+"' /></li>";
+                //var img_html = "<li><img src='../photo/"+filelist[i]+"' id='img"+i+"' name='img"+i+"' alt='"+filelist[i]+"' /></li>";
+                var img_html = '';
+                if(i != parseInt($('#current_img_id').text()))
+                    img_html = "<li><img src='../photo/"+'background.png'+"' id='img"+i+"' name='img"+i+"' alt='"+filelist[i]+"' /></li>";
+                else
+                    img_html = "<li><img src='../photo/"+filelist[i]+"' id='img"+i+"' name='img"+i+"' alt='"+filelist[i]+"' /></li>";
                 $('#photo_slides_list').append(img_html);
             }
         }
