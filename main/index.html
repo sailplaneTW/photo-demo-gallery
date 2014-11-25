@@ -289,22 +289,24 @@
             gotopage = gotopage || -100;
 
             if(gotopage == -100) {
-                $(function() {
+                var new_silderbar_creation = function() {
                         var row_num = parseInt($('#row_num').text());
                         var col_num = parseInt($('#col_num').text());
                         var total_page_num = Math.ceil((filelist.length)/(row_num * col_num));
-                        var per_step = parseInt(100/Math.floor((filelist.length)/(row_num * col_num)));
+                        var per_step = 100/Math.floor((filelist.length)/(row_num * col_num)+1);
                         $('#sliderbar').slider({
                             step: per_step,
                             change: function() {
 
+                                //alert('(per_step, current) = ('+per_step+', '+$('#sliderbar').slider('value')+')');
+
                                 var all_row_num = parseInt($('#row_num').text());
                                 var all_col_num = parseInt($('#col_num').text());
                                 var all_total_page_num = Math.ceil((filelist.length)/(all_row_num * all_col_num));
-                                var all_per_step = parseInt(100/Math.floor((filelist.length)/(all_row_num * all_col_num)));
+                                var all_per_step = 100/Math.floor((filelist.length)/(all_row_num * all_col_num)+1);
 
-                                $('#current_page').text(Math.floor($(this).slider("value")/all_per_step));
-                                var page_num = Math.ceil($(this).slider("value")/all_per_step);
+                                $('#current_page').text(Math.round($(this).slider("value")/all_per_step));
+                                var page_num = Math.round($(this).slider("value")/all_per_step);
                                 $('#qtdtitle').text('快  速  選  單  ['+(page_num+1)+"/"+(all_total_page_num)+"]");
 
                                 update_quick_selection_table_mapping();
@@ -325,16 +327,23 @@
                         $('#qtdtitle').text('快  速  選  單  ['+(jump_to_page_num+1)+"/"+(total_page_num)+"]");
                         $('#slider').flexslider(parseInt($('#current_img_id').text()));
                         update_quick_selection_table_color(parseInt($('#current_img_id').text()));
-                        });
+                };
+
+                if((typeof $('#sliderbar').slider != 'undefined') && (typeof $('#slider').flexslider != 'undefined'))
+                    new_silderbar_creation();
+
+                $(function() {
+                    new_silderbar_creation();
+                });
             }
             else {
                 var row_num = parseInt($('#row_num').text());
                 var col_num = parseInt($('#col_num').text());
                 var total_page_num = Math.ceil((filelist.length)/(row_num * col_num));
-                var per_step = parseInt(100/Math.floor((filelist.length)/(row_num * col_num)));
-                var jump_to_page_num = (parseInt($('#current_page').text()) + gotopage);
+                var per_step = 100/Math.floor((filelist.length)/(row_num * col_num)+1);
+                var jump_to_page_num = parseInt(parseInt($('#current_page').text()) + gotopage);
 
-                if((jump_to_page_num*per_step) > 100 || (jump_to_page_num*per_step) < 0)
+                if((jump_to_page_num >= total_page_num) || (jump_to_page_num*per_step) < 0)
                     return ;
 
                 $('#sliderbar').slider({value: (jump_to_page_num*per_step)});
