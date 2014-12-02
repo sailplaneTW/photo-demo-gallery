@@ -39,7 +39,7 @@
     </head>
     <body class="loading">
         <div id="fl_menu" style='visibility:hidden;'>
-            <div class="label">RESULT</div>
+            <div class="label" id='result_label' name='result_label'>RESULT</div>
             <div class="menu">
             <div class='menu_item' id='selected_result' name='selected_result'>No Data ...</div>
             </div>
@@ -636,6 +636,7 @@
                         ok_list_array.push(parseInt($('#current_img_id').text()));
                         ok_list_array = sort_unique(ok_list_array);
                         $('#ok_list').text(ok_list_array.toString());
+                        $('#result_label').text('已選 '+(ok_list_array.length-1)+' 張');
                         $('#qtd' + (parseInt($('#current_img_id').text())%(all_num))).css('background-color', '#FFC8B4');
                         adjust_ok_list_result();
                     }
@@ -657,6 +658,7 @@
                         ok_list_array.splice(ok_list_array.indexOf($('#current_img_id').text()), 1);
                         ok_list_array = sort_unique(ok_list_array);
                         $('#ok_list').text(ok_list_array.toString());
+                        $('#result_label').text('已選 '+(ok_list_array.length-1)+' 張');
                         $('#qtd' + (parseInt($('#current_img_id').text())%(all_num))).css('background-color', '#ffba42');
                         adjust_ok_list_result();
                     }
