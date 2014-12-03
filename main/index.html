@@ -547,9 +547,13 @@
             else {
                 var result_data = '';
                 for(var i=0;i<ok_list_array.length;i++)
-                    if(ok_list_array[i] != '')
-                        result_data += filelist[parseInt(ok_list_array[i])] + "\n";
-                $('#selected_result').text(result_data);
+                    if(ok_list_array[i] != '') {
+                        result_data += '<a href="javascript:$('+"'"+'#slider'+"'"+').flexslider('+parseInt(ok_list_array[i])+')">';
+                        result_data += filelist[parseInt(ok_list_array[i])];
+                        result_data += '</a>';
+                        result_data += '<br/>';
+                    }
+                $('#selected_result').html(result_data);
             }
         }
 
