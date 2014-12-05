@@ -10,6 +10,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon-6/favicon.ico"/>
         <!-- Quick Selection Table CSS -->
         <link rel="stylesheet" href="css/quick_select_table.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/result_table.css" type="text/css" media="screen" />
         <!-- Check Box -->
         <link href="css/checkbox.css" rel="stylesheet" type="text/css">
         <link href="css/sticky.css" rel="stylesheet" type="text/css">
@@ -27,10 +28,10 @@
         <!-- floating result -->
         <style type="text/css">
         <!--
-        #fl_menu{position:absolute; top:50px; left:90%; z-index:9999; width:150px; height:50px;}
+        #fl_menu{position:absolute; top:50px; left:90%; z-index:9999; width:150px; height:5000px;}
         #fl_menu .label{padding-left:20px; line-height:50px; font-family:"Arial Black", Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; background:#000; color:#fff; letter-spacing:7px;}
         #fl_menu .menu{display:none;}
-        #fl_menu .menu .menu_item{display:block; background:#2E2E2E; color:#bbb; border-top:1px solid #333; padding:10px 20px; font-family:Arial, Helvetica, sans-serif; font-size:12px; text-decoration:none;}
+        #fl_menu .menu .menu_item{display:block; background:#2E2E2E; color:#bbb; border-top:1px solid #333; padding:10px 20px; font-family:Arial, Helvetica, sans-serif; font-size:25px; text-decoration:none;}
         #fl_menu .menu a.menu_item:hover{background:#333; color:#fff;}
         .content{width:520px; margin:50px auto;}
         -->
@@ -41,9 +42,10 @@
         <div id="fl_menu" style='visibility:hidden;'>
             <div class="label" id='result_label' name='result_label'>RESULT</div>
             <div class="menu">
-            <div class='menu_item' id='selected_result' name='selected_result'>No Data ...</div>
+                <div class='menu_item' id='selected_result' name='selected_result'>No Data ...</div>
             </div>
         </div>
+
         <div id="container" class="cf">
             <header role="navigation">
                 <center><img id='logo_img' name='logo_img' src="images/tuesday.png" alt="(^__^)" height='100' width='250'/></center>
@@ -545,14 +547,31 @@
             if(ok_list_array.length == 1)
                 $('#selected_result').text('No data ...');
             else {
-                var result_data = '';
+                var table_width_num = 4;
+
+                var count = 0;
+
+                var result_data = '<div class="ResultTable"><table>';
+                //var result_data = '<table style="borader:10px solid #000;">';
+                var debug_str = '';
                 for(var i=0;i<ok_list_array.length;i++)
                     if(ok_list_array[i] != '') {
-                        result_data += '<a href="javascript:$('+"'"+'#slider'+"'"+').flexslider('+parseInt(ok_list_array[i])+')">';
-                        result_data += filelist[parseInt(ok_list_array[i])];
+                        if(parseInt(parseInt(count)%parseInt(table_width_num)) == parseInt(0)) {
+                            result_data += '<tr>';
+                        }
+                        result_data += '<td><a href="javascript:$('+"'"+'#slider'+"'"+').flexslider('+parseInt(ok_list_array[i])+')">';
+                        result_data += 'photo '+(parseInt(ok_list_array[i])+1);
                         result_data += '</a>';
-                        result_data += '<br/>';
+                        result_data += '</td>';
+                        if(parseInt(parseInt(count)%parseInt(table_width_num)) == parseInt(table_width_num-1)) {
+                            result_data += '</tr>';
+                        }
+                        count++;
                     }
+                if(result_data.slice(result_data.length-5 , result_data.length) != '</tr>') {
+                    result_data += '</tr>';
+                }
+                result_data += '</table></div>';
                 $('#selected_result').html(result_data);
             }
         }
@@ -738,6 +757,22 @@
             update_sliderbar(1);
         });
 
+        $('#fl_menu').hover(
+            function() {
+                $('#fl_menu').css('left', '50%');
+                $('#fl_menu').css('width', '50%');
+
+                $('#result_label').text('點 選 複 製');
+            },
+            function() {
+                $('#fl_menu').css('left', '90%');
+                $('#fl_menu').css('width', '150');
+
+                var ok_list_array = ($('#ok_list').text()).split(',');
+                $('#result_label').text('已選 '+(ok_list_array.length-1)+' 張');
+            }
+        );
+
         </script>
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
@@ -833,7 +868,6 @@
 		}
 
 		</script>
-
 
     </body>
 </html>
