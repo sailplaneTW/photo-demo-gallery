@@ -1,0 +1,45 @@
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-6/favicon.ico"/>
+    <link rel="stylesheet" href="css/custom_result.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<script src="js/config.js"></script>
+<script src="../jquery.min.js"></script>
+<script type='text/javascript'>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+var list_content = '';
+var ok_list_array = getUrlVars()['x'];
+for(var i=0;i<ok_list_array.length;i++)
+    if(ok_list_array[i] != '' && ok_list_array[i] != ',') {
+        list_content += filelist[ ok_list_array[i] ] + ',';
+    }
+
+function reset_val() {
+    $('#custom_data').val(list_content);
+}
+
+</script>
+
+<center>
+<form id="signup" action='javascript:reset_val();'>
+    <div class="header"><center><img src='images/dark16.png'></center></div>
+    <div class="inputs">
+        <input type='text' id='custom_data' name='custom_data' value='' onchange='javascript:reset_val();' />
+    </div>
+</form>
+</center>
+
+<script type='text/javascript'>
+reset_val();
+</script>
+
+</body>
+</html>

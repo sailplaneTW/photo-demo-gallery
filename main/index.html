@@ -762,7 +762,11 @@
                 $('#fl_menu').css('left', '50%');
                 $('#fl_menu').css('width', '50%');
 
-                $('#result_label').text('點 選 複 製');
+                $('#result_label').text('跳 轉 結 果 頁');
+                $("#result_label").unbind('click');
+                $("#result_label").click(function() {
+                    window.open('./result.html?x='+$('#ok_list').text());
+                });
             },
             function() {
                 $('#fl_menu').css('left', '90%');
@@ -770,6 +774,9 @@
 
                 var ok_list_array = ($('#ok_list').text()).split(',');
                 $('#result_label').text('已選 '+(ok_list_array.length-1)+' 張');
+                $('#result_label').css('background', '#000');
+                $("#result_label").unbind('click');
+                $("#result_label").unbind('hover');
             }
         );
 
@@ -779,7 +786,6 @@
             update_sliderbar();
         </script>
         <script type="text/javascript">
-        /*
             function iEsc(){ return false; }
             function iRec(){ return true; }
             function DisableKeys() {
@@ -806,7 +812,6 @@
                             event.returnValue = false;
                         iEsc();}
             }
-        */
         </script>
         <!-- Syntax Highlighter -->
         <script type="text/javascript" src="js/shCore.js"></script>
