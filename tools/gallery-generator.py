@@ -5,6 +5,7 @@ import shutil
 import subprocess
 import re
 import uuid
+from datetime import datetime
 
 def remove_data(f):
     try:
@@ -76,6 +77,8 @@ def main(root_dir, argv):
         remove_data(root_dir+'/thumb');
         print "\tdelete /main/js/config.js ..."
         remove_data(root_dir+'/main/js/config.js');
+        print "\tdelete /manifest ..."
+        remove_data(root_dir+'/manifest');
         print "[clean done]"
 
     else:
@@ -92,7 +95,7 @@ def main(root_dir, argv):
 
         # generate thumbnail
         print 'Generating thumbnail for raw photo in /thumb ...'
-        remove_data(root_dir+'/thumb');
+        remove_data(root_dir+'/thumb')
         os.makedirs(root_dir+'/thumb')
         [ generate_thumbnail(root_dir+'/raw/'+f, root_dir+'/thumb/'+f) for f in os.listdir(root_dir+'/raw') if os.path.isfile(os.path.join(root_dir+'/raw', f)) ]
         print 'Generating thumbnail for raw photo in /thumb ... done'
@@ -113,6 +116,18 @@ def main(root_dir, argv):
 
         # copy background image
         shutil.copyfile('/tmp/background.png', root_dir+'/photo/background.png')
+
+        # generate manifest
+        print 'Generating cache list to /manifest ...'
+        remove_data(root_dir+'/manifest');
+        os.makedirs(root_dir+'/manifest')
+        outfile = open(root_dir+'/manifest/cache.manifest', 'wb+');
+        outfile.write("CACHE MANIFEST\n# time %s\n" % (str(datetime.now())));
+        outfile.write('CACHE:\n');
+        [outfile.write('../photo/%s\n' % f) for f in os.listdir(root_dir+'/photo') if os.path.isfile(os.path.join(root_dir+'/photo', f)) ]
+        [outfile.write('../thumb/%s\n' % f) for f in os.listdir(root_dir+'/thumb') if os.path.isfile(os.path.join(root_dir+'/thumb', f)) ]
+        outfile.close()
+        print 'Generating cache list to /manifest ... done'
 
 if __name__ == '__main__':
     main(os.path.abspath(os.path.dirname(sys.argv[0]) + '/..'), sys.argv[1:])
