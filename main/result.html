@@ -16,10 +16,12 @@ function getUrlVars() {
     return vars;
 }
 var list_content = '';
-var ok_list_array = getUrlVars()['x'];
+var ok_list_array = getUrlVars()['x'].split(',');
+var total_num = 0;
 for(var i=0;i<ok_list_array.length;i++)
-    if(ok_list_array[i] != '' && ok_list_array[i] != ',') {
+    if(ok_list_array[i] != '') {
         list_content += filelist[ ok_list_array[i] ] + ',';
+        total_num ++;
     }
 
 function reset_val() {
@@ -30,15 +32,37 @@ function reset_val() {
 
 <center>
 <form id="signup" action='javascript:reset_val();'>
-    <div class="header"><center><img src='images/dark16.png'></center></div>
+    <div class="header"><center><img src='images/dark16.png' width='25%'></center></div>
     <div class="inputs">
-        <input type='text' id='custom_data' name='custom_data' value='' onchange='javascript:reset_val();' />
+        <input type='text' id='custom_data' name='custom_data' value='' onchange='javascript:reset_val();' onclick='javascript:this.select();' />
     </div>
 </form>
+
+<div id='ResultShowingContainer' name='ResultShowingContainer' style='width:60%;'>
+<div class="ResultShowing">
+<table id='ResultShowingTable' name='ResultShowingTable'>
+<tr><td>image</td><td>image name</td></tr>
+</table>
+</div>
+</div>
 </center>
 
 <script type='text/javascript'>
 reset_val();
+
+$(function() {
+    $('#ResultShowingContainer').css('height', (total_num+1)* 48 + 'px');
+    var table_html_content = '';
+    for(var i=0;i<ok_list_array.length;i++)
+        if(ok_list_array[i] != '' && ok_list_array[i] != ',') {
+            table_html_content += '<tr >';
+            table_html_content += '<td><center><img src="../thumb/'+ filelist[ ok_list_array[i] ] + '">' + '</center></td>';
+            table_html_content += '<td><center>'+ filelist[ ok_list_array[i] ] + '</center></td>';
+            table_html_content += '</tr>';
+        }
+    $('#ResultShowingTable').append(table_html_content);
+});
+
 </script>
 
 </body>

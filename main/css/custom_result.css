@@ -1,5 +1,6 @@
 body {
-    background-image: url(http://kreativo.se/backlogin.jpg);
+    /*background-image: url(http://kreativo.se/backlogin.jpg);*/
+    background-color: #f5f5dc;
     font-family: "Helvetica Neue", Helvetica, Arial;
     padding-top: 20px;
 }
@@ -131,7 +132,7 @@ input:-moz-placeholder {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    border: 1px solid #737b8d;
+    border: 0px solid #737b8d;
     -moz-box-shadow:
         0px 5px 5px rgba(000,000,000,0.1),
         inset 0px 1px 0px rgba(255,255,255,0.5);
@@ -158,4 +159,100 @@ input:-moz-placeholder {
         linear, left top, left bottom, 
         from(#a4b0cb),
         to(#b9c5dd));
+}
+
+/* -------------------------------------------------------- */
+.ResultShowing {
+    margin:0px;padding:0px;
+    width:100%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #ffffff;
+
+    -moz-border-radius-bottomleft:10px;
+    -webkit-border-bottom-left-radius:10px;
+    border-bottom-left-radius:10px;
+
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+    border-bottom-right-radius:10px;
+
+    -moz-border-radius-topright:10px;
+    -webkit-border-top-right-radius:10px;
+    border-top-right-radius:10px;
+
+    -moz-border-radius-topleft:10px;
+    -webkit-border-top-left-radius:10px;
+    border-top-left-radius:10px;
+}.ResultShowing table{
+    border-collapse: collapse;
+        border-spacing: 0;
+    width:100%;
+    height:100%;
+    margin:0px;padding:0px;
+}.ResultShowing tr:last-child td:last-child {
+    -moz-border-radius-bottomright:10px;
+    -webkit-border-bottom-right-radius:10px;
+    border-bottom-right-radius:10px;
+}
+.ResultShowing table tr:first-child td:first-child {
+    -moz-border-radius-topleft:10px;
+    -webkit-border-top-left-radius:10px;
+    border-top-left-radius:10px;
+}
+.ResultShowing table tr:first-child td:last-child {
+    -moz-border-radius-topright:10px;
+    -webkit-border-top-right-radius:10px;
+    border-top-right-radius:10px;
+}.ResultShowing tr:last-child td:first-child{
+    -moz-border-radius-bottomleft:10px;
+    -webkit-border-bottom-left-radius:10px;
+    border-bottom-left-radius:10px;
+}.ResultShowing tr:hover td{
+
+}
+.ResultShowing tr:nth-child(odd){ background-color:#ffffaa; }
+.ResultShowing tr:nth-child(even)    { background-color:#ffffff; }.ResultShowing td{
+    vertical-align:middle;
+    border:1px solid #ffffff;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:3px;
+    font-size:10px;
+    font-family:Arial;
+    font-weight:normal;
+    color:#000000;
+}.ResultShowing tr:last-child td{
+    border-width:0px 1px 0px 0px;
+}.ResultShowing tr td:last-child{
+    border-width:0px 0px 1px 0px;
+}.ResultShowing tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+}
+.ResultShowing tr:first-child td{
+        background:-o-linear-gradient(bottom, #ffaa56 5%, #ff9d00 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffaa56), color-stop(1, #ff9d00) );
+    background:-moz-linear-gradient( center top, #ffaa56 5%, #ff9d00 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffaa56", endColorstr="#ff9d00");  background: -o-linear-gradient(top,#ffaa56,ff9d00);
+
+    background-color:#ffaa56;
+    border:0px solid #ffffff;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:14px;
+    font-family:Arial;
+    font-weight:bold;
+    color:#ffffff;
+    height:25px;
+}
+.ResultShowing tr:first-child:hover td{
+    background:-o-linear-gradient(bottom, #ffaa56 5%, #ff9d00 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffaa56), color-stop(1, #ff9d00) );
+    background:-moz-linear-gradient( center top, #ffaa56 5%, #ff9d00 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffaa56", endColorstr="#ff9d00");  background: -o-linear-gradient(top,#ffaa56,ff9d00);
+
+    background-color:#ffaa56;
+}
+.ResultShowing tr:first-child td:first-child{
+    border-width:0px 0px 1px 0px;
+}
+.ResultShowing tr:first-child td:last-child{
+    border-width:0px 0px 1px 1px;
 }
