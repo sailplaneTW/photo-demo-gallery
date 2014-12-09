@@ -40,7 +40,7 @@
     </head>
     <body class="loading">
         <div id="fl_menu" style='visibility:hidden;'>
-            <div class="label" id='result_label' name='result_label'>RESULT</div>
+            <div class="label" id='result_label' name='result_label'>已選 0 張</div>
             <div class="menu">
                 <div class='menu_item' id='selected_result' name='selected_result'>No Data ...</div>
             </div>
@@ -761,16 +761,21 @@
             function() {
                 $('#fl_menu').css('left', '50%');
                 $('#fl_menu').css('width', '50%');
+                $('#fl_menu').css('text-align', 'right');
+                $('#fl_menu').css('vertical-align', 'bottom');
 
-                $('#result_label').text('跳 轉 結 果 頁');
+                $('#result_label').html('<a href="./result.html?x='+$('#ok_list').text()+'" target="end result">跳轉至結果頁</a>');
+                /*
                 $("#result_label").unbind('click');
                 $("#result_label").click(function() {
                     window.open('./result.html?x='+$('#ok_list').text());
                 });
+                */
             },
             function() {
                 $('#fl_menu').css('left', 'calc(100% - 150px)');
                 $('#fl_menu').css('width', '150px');
+                $('#fl_menu').css('text-align', 'left');
 
                 var ok_list_array = ($('#ok_list').text()).split(',');
                 $('#result_label').text('已選 '+(ok_list_array.length-1)+' 張');
