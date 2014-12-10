@@ -121,7 +121,7 @@ def main(root_dir, argv):
         print 'Generating cache list to /manifest ...'
         remove_data(root_dir+'/manifest');
         os.makedirs(root_dir+'/manifest')
-        outfile = open(root_dir+'/manifest/cache.manifest', 'wb+');
+        outfile = open(root_dir+'/manifest/cache.appcache', 'wb+');
         outfile.write("CACHE MANIFEST\n# time %s\n" % (str(datetime.now())));
         outfile.write('CACHE:\n');
         [outfile.write('../photo/%s\n' % f) for f in os.listdir(root_dir+'/photo') if os.path.isfile(os.path.join(root_dir+'/photo', f)) ]
