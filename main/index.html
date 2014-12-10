@@ -560,7 +560,7 @@
                             result_data += '<tr>';
                         }
                         result_data += '<td><a href="javascript:$('+"'"+'#slider'+"'"+').flexslider('+parseInt(ok_list_array[i])+')">';
-                        result_data += 'photo '+(parseInt(ok_list_array[i])+1);
+                        result_data += (filelist[ok_list_array[i]]).split('.')[0];
                         result_data += '</a>';
                         result_data += '</td>';
                         if(parseInt(parseInt(count)%parseInt(table_width_num)) == parseInt(table_width_num-1)) {
