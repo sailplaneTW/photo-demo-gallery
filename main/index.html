@@ -28,7 +28,7 @@
         <!-- floating result -->
         <style type="text/css">
         <!--
-        #fl_menu{position:absolute; top:50px; left:calc(100% - 150px); z-index:9999; width:150px; height:5000px;}
+        #fl_menu{position:absolute; top:50px; left:calc(100% - 150px); z-index:9999; width:150px; height:50px;}
         #fl_menu .label{padding-left:20px; line-height:50px; font-family:"Arial Black", Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; background:#000; color:#fff; letter-spacing:7px;}
         #fl_menu .menu{display:none;}
         #fl_menu .menu .menu_item{display:block; background:#2E2E2E; color:#bbb; border-top:1px solid #333; padding:10px 20px; font-family:Arial, Helvetica, sans-serif; font-size:25px; text-decoration:none;}
@@ -559,7 +559,7 @@
                         if(parseInt(parseInt(count)%parseInt(table_width_num)) == parseInt(0)) {
                             result_data += '<tr>';
                         }
-                        result_data += '<td><a href="javascript:$('+"'"+'#slider'+"'"+').flexslider('+parseInt(ok_list_array[i])+')">';
+                        result_data += '<td style="height:10px;"><a href="javascript:$('+"'"+'#slider'+"'"+').flexslider('+parseInt(ok_list_array[i])+')">';
                         result_data += (filelist[ok_list_array[i]]).split('.')[0];
                         result_data += '</a>';
                         result_data += '</td>';
@@ -761,6 +761,7 @@
             function() {
                 $('#fl_menu').css('left', '50%');
                 $('#fl_menu').css('width', '50%');
+                $('#fl_menu').css('height', (30 + parseInt((Math.ceil((($('#ok_list').text()).split(',').length-1)/4))*10))+'px');
                 $('#fl_menu').css('text-align', 'right');
                 $('#fl_menu').css('vertical-align', 'bottom');
 
@@ -776,6 +777,7 @@
                 $('#fl_menu').css('left', 'calc(100% - 150px)');
                 $('#fl_menu').css('width', '150px');
                 $('#fl_menu').css('text-align', 'left');
+                $('#fl_menu').css('height', '50px');
 
                 var ok_list_array = ($('#ok_list').text()).split(',');
                 $('#result_label').text('已選 '+(ok_list_array.length-1)+' 張');
