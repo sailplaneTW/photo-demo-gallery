@@ -118,16 +118,16 @@ def main(root_dir, argv):
         shutil.copyfile('/tmp/background.png', root_dir+'/photo/background.png')
 
         # generate manifest
-        print 'Generating cache list to /manifest ...'
-        remove_data(root_dir+'/manifest');
-        os.makedirs(root_dir+'/manifest')
-        outfile = open(root_dir+'/manifest/cache.appcache', 'wb+');
-        outfile.write("CACHE MANIFEST\n# time %s\n" % (str(datetime.now())));
-        outfile.write('CACHE:\n');
-        [outfile.write('../photo/%s\n' % f) for f in os.listdir(root_dir+'/photo') if os.path.isfile(os.path.join(root_dir+'/photo', f)) ]
-        [outfile.write('../thumb/%s\n' % f) for f in os.listdir(root_dir+'/thumb') if os.path.isfile(os.path.join(root_dir+'/thumb', f)) ]
-        outfile.close()
-        print 'Generating cache list to /manifest ... done'
+        #print 'Generating cache list to /manifest ...'
+        #remove_data(root_dir+'/manifest');
+        #os.makedirs(root_dir+'/manifest')
+        #outfile = open(root_dir+'/manifest/cache.appcache', 'wb+');
+        #outfile.write("CACHE MANIFEST\n# time %s\n" % (str(datetime.now())));
+        #outfile.write('CACHE:\n');
+        #[outfile.write('../photo/%s\n' % f) for f in os.listdir(root_dir+'/photo') if os.path.isfile(os.path.join(root_dir+'/photo', f)) ]
+        #[outfile.write('../thumb/%s\n' % f) for f in os.listdir(root_dir+'/thumb') if os.path.isfile(os.path.join(root_dir+'/thumb', f)) ]
+        #outfile.close()
+        #print 'Generating cache list to /manifest ... done'
 
 if __name__ == '__main__':
     main(os.path.abspath(os.path.dirname(sys.argv[0]) + '/..'), sys.argv[1:])
