@@ -452,7 +452,7 @@
             $('#row_num').text(row_num);
             $('#col_num').text(col_num);
 
-            var containerstart = "<div class='CSSTableGenerator' id='quick_selection_table_div' name='quick_selection_table_div'>";
+            var containerstart = "<div class='CSSTableGenerator' id='quick_selection_table_div' name='quick_selection_table_div' style='width:"+(48*parseInt(col_num) + 10)+"px;'>";
             var containerend = "</div>";
             var tablestart = "<table id='quick_selection_table' name='quick_selection_table' role='quick_selection_table'>";
             var tableend = "</table>";
