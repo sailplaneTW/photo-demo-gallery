@@ -380,7 +380,6 @@
                 before: function(slider) {
                 },
                 after: function (slider) {
-
                     //    update_quick_selection_table_mapping();
                     $('#img'+slider.currentSlide).attr('src', '../photo/'+filelist[slider.currentSlide]); 
 /*
@@ -518,7 +517,6 @@
         }
 
         function set_checkbox_visible(idx) {
-            $('#debugmsg').text('set ' + idx + ' visible');
             var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
             for (var i = 0; i < all_num; i++) {
                 show_check_box(i, 'hidden');
@@ -528,7 +526,6 @@
         }
 
         function set_all_checkbox_invisible() {
-            $('#debugmsg').text('set all invisible');
             //var all_num = parseInt($('#row_num').text()) * parseInt($('#col_num').text());
             var all_num = filelist.length;
             for (var i = 0; i < all_num ; i++) {
@@ -600,7 +597,10 @@
         }
         */
 
+        var last_window_size_senario = -1;
+
         if ($(window).width() < 768) {
+            last_window_size_senario = 0;
             $('#current_page').text( Math.floor(parseInt($('#current_img_id').text())/(30)) );
 
             quick_selection_table_remover();
@@ -616,6 +616,7 @@
             update_quick_selection_table_color(parseInt($('#current_img_id').text()));
             update_quick_selection_table_mapping();
         } else {
+            last_window_size_senario = 1;
             $('#current_page').text( Math.floor(parseInt($('#current_img_id').text())/(24)) );
 
             quick_selection_table_remover();
@@ -691,6 +692,10 @@
         $(window).resize(function () {
             setTimeout(function () {
                 if ($(window).width() < 768) {
+                    if(last_window_size_senario == 0)
+                        return ;
+                    last_window_size_senario = 0;
+                    var tmp_current_img_id = $('#current_img_id').text();
                     $('#current_page').text( Math.floor(parseInt($('#current_img_id').text())/(30)) );
 
                     quick_selection_table_remover();
@@ -706,12 +711,15 @@
                     update_quick_selection_table_color(parseInt($('#current_img_id').text()));
                     update_quick_selection_table_mapping();
 
-                    var tmp_current_img_id = $('#current_img_id').text();
                     var per_step = parseInt(100/Math.floor((filelist.length)/(30)));
                     $('#sliderbar').slider({value: (parseInt($('#current_page').text())*per_step)});
                     $('#current_img_id').text(tmp_current_img_id);
                     $('#slider').flexslider(tmp_current_img_id);
                 } else {
+                    if(last_window_size_senario == 1)
+                        return ;
+                    last_window_size_senario = 1;
+                    var tmp_current_img_id = $('#current_img_id').text();
                     $('#current_page').text( Math.floor(parseInt($('#current_img_id').text())/(24)) );
 
                     quick_selection_table_remover();
@@ -727,7 +735,6 @@
                     update_quick_selection_table_color(parseInt($('#current_img_id').text()));
                     update_quick_selection_table_mapping();
 
-                    var tmp_current_img_id = $('#current_img_id').text();
                     var per_step = parseInt(100/Math.floor((filelist.length)/(30)));
                     $('#sliderbar').slider({value: (parseInt($('#current_page').text())*per_step)});
                     $('#current_img_id').text(tmp_current_img_id);
